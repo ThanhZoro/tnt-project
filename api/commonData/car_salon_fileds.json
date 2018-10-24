@@ -1,0 +1,30 @@
+[
+  {"id":"URL","value":"URL"
+  },
+  {"id":"ID_INTERNAL","value":"ID_INTERNAL"
+  },
+  {"id":"CR_SL_NAME","value":"CR_SL_NAME"
+  },
+  {"id":"CR_SL_PHONE","value":"CR_SL_PHONE"
+  },
+  {"id":"CR_SL_EMAIL","value":"CR_SL_EMAIL"
+  },
+  {"id":"CR_SL_FAX","value":"CR_SL_FAX"
+  },
+  {"id":"CR_SL_CITY","value":"CR_SL_CITY"
+  },
+  {"id":"CR_SL_DISTRICT","value":"CR_SL_DISTRICT"
+  },
+  {"id":"CR_SL_ADDRESS","value":"CR_SL_ADDRESS"
+  },
+  {"id":"CR_SL_FACEBOOK","value":"CR_SL_FACEBOOK"
+  },
+  {"id":"CR_SL_WEBSITE","value":"CR_SL_WEBSITE"
+  },
+  {"id":"CR_SL_LOGO","value":"CR_SL_LOGO"
+  },
+  {"id":"CR_SL_BRIEF_DESC","value":"CR_SL_BRIEF_DESC"
+  },
+  {"id":"CR_SL_IMAGES","value":"CR_SL_IMAGES"
+  }
+]

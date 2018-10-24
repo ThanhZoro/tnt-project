@@ -1,0 +1,166 @@
+[
+  {"id":"Phường Phúc Xá","value":"Phường Phúc Xá"
+  },
+  {"id":"Phường Trúc Bạch","value":"Phường Trúc Bạch"
+  },
+  {"id":"Phường Vĩnh Phúc","value":"Phường Vĩnh Phúc"
+  },
+  {"id":"Phường Cống Vị","value":"Phường Cống Vị"
+  },
+  {"id":"Phường Liễu Giai","value":"Phường Liễu Giai"
+  },
+  {"id":"Phường Nguyễn Trung Trực","value":"Phường Nguyễn Trung Trực"
+  },
+  {"id":"Phường Quán Thánh","value":"Phường Quán Thánh"
+  },
+  {"id":"Phường Ngọc Hà","value":"Phường Ngọc Hà"
+  },
+  {"id":"Phường Điện Biên","value":"Phường Điện Biên"
+  },
+  {"id":"Phường Đội Cấn","value":"Phường Đội Cấn"
+  },
+  {"id":"Phường Ngọc Khánh","value":"Phường Ngọc Khánh"
+  },
+  {"id":"Phường Kim Mã","value":"Phường Kim Mã"
+  },
+  {"id":"Phường Giảng Võ","value":"Phường Giảng Võ"
+  },
+  {"id":"Phường Thành Công","value":"Phường Thành Công"
+  },
+  {"id":"Phường Phúc Tân","value":"Phường Phúc Tân"
+  },
+  {"id":"Phường Đồng Xuân","value":"Phường Đồng Xuân"
+  },
+  {"id":"Phường Hàng Mã","value":"Phường Hàng Mã"
+  },
+  {"id":"Phường Hàng Buồm","value":"Phường Hàng Buồm"
+  },
+  {"id":"Phường Hàng Đào","value":"Phường Hàng Đào"
+  },
+  {"id":"Phường Hàng Bồ","value":"Phường Hàng Bồ"
+  },
+  {"id":"Phường Cửa Đông","value":"Phường Cửa Đông"
+  },
+  {"id":"Phường Lý Thái Tổ","value":"Phường Lý Thái Tổ"
+  },
+  {"id":"Phường Hàng Bạc","value":"Phường Hàng Bạc"
+  },
+  {"id":"Phường Hàng Gai","value":"Phường Hàng Gai"
+  },
+  {"id":"Phường Chương Dương Độ","value":"Phường Chương Dương Độ"
+  },
+  {"id":"Phường Hàng Trống","value":"Phường Hàng Trống"
+  },
+  {"id":"Phường Cửa Nam","value":"Phường Cửa Nam"
+  },
+  {"id":"Phường Hàng Bông","value":"Phường Hàng Bông"
+  },
+  {"id":"Phường Tràng Tiền","value":"Phường Tràng Tiền"
+  },
+  {"id":"Phường Trần Hưng Đạo","value":"Phường Trần Hưng Đạo"
+  },
+  {"id":"Phường Phan Chu Trinh","value":"Phường Phan Chu Trinh"
+  },
+  {"id":"Phường Hàng Bài","value":"Phường Hàng Bài"
+  },
+  {"id":"Phường Phú Thượng","value":"Phường Phú Thượng"
+  },
+  {"id":"Phường Nhật Tân","value":"Phường Nhật Tân"
+  },
+  {"id":"Phường Tứ Liên","value":"Phường Tứ Liên"
+  },
+  {"id":"Phường Quảng An","value":"Phường Quảng An"
+  },
+  {"id":"Phường Xuân La","value":"Phường Xuân La"
+  },
+  {"id":"Phường Yên Phụ","value":"Phường Yên Phụ"
+  },
+  {"id":"Phường Bưởi","value":"Phường Bưởi"
+  },
+  {"id":"Phường Thụy Khuê","value":"Phường Thụy Khuê"
+  },
+  {"id":"Phường Thượng Thanh","value":"Phường Thượng Thanh"
+  },
+  {"id":"Phường Ngọc Thụy","value":"Phường Ngọc Thụy"
+  },
+  {"id":"Phường Giang Biên","value":"Phường Giang Biên"
+  },
+  {"id":"Phường Đức Giang","value":"Phường Đức Giang"
+  },
+  {"id":"Phường Việt Hưng","value":"Phường Việt Hưng"
+  },
+  {"id":"Phường Gia Thụy","value":"Phường Gia Thụy"
+  },
+  {"id":"Phường Ngọc Lâm","value":"Phường Ngọc Lâm"
+  },
+  {"id":"Phường Phúc Lợi","value":"Phường Phúc Lợi"
+  },
+  {"id":"Phường Bồ Đề","value":"Phường Bồ Đề"
+  },
+  {"id":"Phường Sài Đồng","value":"Phường Sài Đồng"
+  },
+  {"id":"Phường Long Biên","value":"Phường Long Biên"
+  },
+  {"id":"Phường Thạch Bàn","value":"Phường Thạch Bàn"
+  },
+  {"id":"Phường Phúc Đồng","value":"Phường Phúc Đồng"
+  },
+  {"id":"Phường Cự Khối","value":"Phường Cự Khối"
+  },
+  {"id":"Phường Nghĩa Đô","value":"Phường Nghĩa Đô"
+  },
+  {"id":"Phường Nghĩa Tân","value":"Phường Nghĩa Tân"
+  },
+  {"id":"Phường Mai Dịch","value":"Phường Mai Dịch"
+  },
+  {"id":"Phường Dịch Vọng","value":"Phường Dịch Vọng"
+  },
+  {"id":"Phường Dịch Vọng Hậu","value":"Phường Dịch Vọng Hậu"
+  },
+  {"id":"Phường Quan Hoa","value":"Phường Quan Hoa"
+  },
+  {"id":"Phường Yên Hoà","value":"Phường Yên Hoà"
+  },
+  {"id":"Phường Trung Hoà","value":"Phường Trung Hoà"
+  },
+  {"id":"Phường Cát Linh","value":"Phường Cát Linh"
+  },
+  {"id":"Phường Văn Miếu","value":"Phường Văn Miếu"
+  },
+  {"id":"Phường Quốc Tử Giám","value":"Phường Quốc Tử Giám"
+  },
+  {"id":"Phường Láng Thượng","value":"Phường Láng Thượng"
+  },
+  {"id":"Phường Ô Chợ Dừa","value":"Phường Ô Chợ Dừa"
+  },
+  {"id":"Phường Văn Chương","value":"Phường Văn Chương"
+  },
+  {"id":"Phường Hàng Bột","value":"Phường Hàng Bột"
+  },
+  {"id":"Phường Láng Hạ","value":"Phường Láng Hạ"
+  },
+  {"id":"Phường Khâm Thiên","value":"Phường Khâm Thiên"
+  },
+  {"id":"Phường Thổ Quan","value":"Phường Thổ Quan"
+  },
+  {"id":"Phường Nam Đồng","value":"Phường Nam Đồng"
+  },
+  {"id":"Phường Trung Phụng","value":"Phường Trung Phụng"
+  },
+  {"id":"Phường Quang Trung","value":"Phường Quang Trung"
+  },
+  {"id":"Phường Trung Liệt","value":"Phường Trung Liệt"
+  },
+  {"id":"Phường Phương Liên","value":"Phường Phương Liên"
+  },
+  {"id":"Phường Thịnh Quang","value":"Phường Thịnh Quang"
+  },
+  {"id":"Phường Trung Tự","value":"Phường Trung Tự"
+  },
+  {"id":"Phường Kim Liên","value":"Phường Kim Liên"
+  },
+  {"id":"Phường Phương Mai","value":"Phường Phương Mai"
+  },
+  {"id":"Phường Ngã Tư Sở","value":"Phường Ngã Tư Sở"
+  }
+]

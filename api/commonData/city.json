@@ -1,0 +1,330 @@
+[
+  {
+    "id": "Toàn Quốc",
+    "value": "Toàn Quốc"
+  },
+  {
+    "id": "An Giang",
+    "value": "An Giang"
+  },
+  {
+    "id": "Bà Rịa-Vũng Tàu",
+    "value": "Bà Rịa-Vũng Tàu"
+  },
+  {
+    "id": "Bạc Liêu",
+    "value": "Bạc Liêu"
+  },
+  {
+    "id": "Bắc Kạn",
+    "value": "Bắc Kạn"
+  },
+  {
+    "id": "Bắc Giang",
+    "value": "Bắc Giang"
+  },
+  {
+    "id": "Bắc Ninh",
+    "value": "Bắc Ninh"
+  },
+  {
+    "id": "Bến Tre",
+    "value": "Bến Tre"
+  },
+  {
+    "id": "Bình Dương",
+    "value": "Bình Dương"
+  },
+  {
+    "id": "Bình Định",
+    "value": "Bình Định"
+  },
+  {
+    "id": "Bình Phước",
+    "value": "Bình Phước"
+  },
+  {
+    "id": "Bình Thuận",
+    "value": "Bình Thuận"
+  },
+  {
+    "id": "Cà Mau",
+    "value": "Cà Mau"
+  },
+  {
+    "id": "Cao Bằng",
+    "value": "Cao Bằng"
+  },
+  {
+    "id": "TP. Cần Thơ",
+    "value": "TP. Cần Thơ"
+  },
+  {
+    "id": "TP. Đà Nẵng",
+    "value": "TP. Đà Nẵng"
+  },
+  {
+    "id": "Đắk Lắk",
+    "value": "Đắk Lắk"
+  },
+  {
+    "id": "Đắk Nông",
+    "value": "Đắk Nông"
+  },
+  {
+    "id": "Điện Biên",
+    "value": "Điện Biên"
+  },
+  {
+    "id": "Đồng Nai",
+    "value": "Đồng Nai"
+  },
+  {
+    "id": "Đồng Tháp",
+    "value": "Đồng Tháp"
+  },
+  {
+    "id": "Gia Lai",
+    "value": "Gia Lai"
+  },
+  {
+    "id": "Hà Giang",
+    "value": "Hà Giang"
+  },
+  {
+    "id": "Hà Nam",
+    "value": "Hà Nam"
+  },
+  {
+    "id": "TP. Hà Nội",
+    "value": "TP. Hà Nội"
+  },
+  {
+    "id": "Hà Tây",
+    "value": "Hà Tây"
+  },
+  {
+    "id": "Hà Tĩnh",
+    "value": "Hà Tĩnh"
+  },
+  {
+    "id": "Hải Dương",
+    "value": "Hải Dương"
+  },
+  {
+    "id": "TP. Hải Phòng",
+    "value": "TP. Hải Phòng"
+  },
+  {
+    "id": "Hòa Bình",
+    "value": "Hòa Bình"
+  },
+  {
+    "id": "TP. Hồ Chí Minh",
+    "value": "TP. Hồ Chí Minh"
+  },
+  {
+    "id": "Hậu Giang",
+    "value": "Hậu Giang"
+  },
+  {
+    "id": "Hưng Yên",
+    "value": "Hưng Yên"
+  },
+  {
+    "id": "Khánh Hòa",
+    "value": "Khánh Hòa"
+  },
+  {
+    "id": "Kiên Giang",
+    "value": "Kiên Giang"
+  },
+  {
+    "id": "Kon Tum",
+    "value": "Kon Tum"
+  },
+  {
+    "id": "Lai Châu",
+    "value": "Lai Châu"
+  },
+  {
+    "id": "Lào Cai",
+    "value": "Lào Cai"
+  },
+  {
+    "id": "Lạng Sơn",
+    "value": "Lạng Sơn"
+  },
+  {
+    "id": "Lâm Đồng",
+    "value": "Lâm Đồng"
+  },
+  {
+    "id": "Long An",
+    "value": "Long An"
+  },
+  {
+    "id": "Nam Định",
+    "value": "Nam Định"
+  },
+  {
+    "id": "Nghệ An",
+    "value": "Nghệ An"
+  },
+  {
+    "id": "Ninh Bình",
+    "value": "Ninh Bình"
+  },
+  {
+    "id": "Ninh Thuận",
+    "value": "Ninh Thuận"
+  },
+  {
+    "id": "Phú Thọ",
+    "value": "Phú Thọ"
+  },
+  {
+    "id": "Phú Yên",
+    "value": "Phú Yên"
+  },
+  {
+    "id": "Quảng Bình",
+    "value": "Quảng Bình"
+  },
+  {
+    "id": "Quảng Nam",
+    "value": "Quảng Nam"
+  },
+  {
+    "id": "Quảng Ngãi",
+    "value": "Quảng Ngãi"
+  },
+  {
+    "id": "Quảng Ninh",
+    "value": "Quảng Ninh"
+  },
+  {
+    "id": "Quảng Trị",
+    "value": "Quảng Trị"
+  },
+  {
+    "id": "Sóc Trăng",
+    "value": "Sóc Trăng"
+  },
+  {
+    "id": "Sơn La",
+    "value": "Sơn La"
+  },
+  {
+    "id": "Tây Ninh",
+    "value": "Tây Ninh"
+  },
+  {
+    "id": "Thái Bình",
+    "value": "Thái Bình"
+  },
+  {
+    "id": "Thái Nguyên",
+    "value": "Thái Nguyên"
+  },
+  {
+    "id": "Thanh Hóa",
+    "value": "Thanh Hóa"
+  },
+  {
+    "id": "Thừa Thiên - Huế",
+    "value": "Thừa Thiên - Huế"
+  },
+  {
+    "id": "Tiền Giang",
+    "value": "Tiền Giang"
+  },
+  {
+    "id": "Trà Vinh",
+    "value": "Trà Vinh"
+  },
+  {
+    "id": "Tuyên Quang",
+    "value": "Tuyên Quang"
+  },
+  {
+    "id": "Vĩnh Long",
+    "value": "Vĩnh Long"
+  },
+  {
+    "id": "Vĩnh Phúc",
+    "value": "Vĩnh Phúc"
+  },
+  {
+    "id": "Yên Bái",
+    "value": "Yên Bái"
+  },
+  {
+    "id": "Nước Ngoài",
+    "value": "Nước Ngoài"
+  },
+  {
+    "id": "Đồng Bằng Sông Cửu Long",
+    "value": "Đồng Bằng Sông Cửu Long"
+  },
+  {
+    "id": "Đồng Bằng Sông Hồng",
+    "value": "Đồng Bằng Sông Hồng"
+  },
+  {
+    "id": "Miền Bắc",
+    "value": "Miền Bắc"
+  },
+  {
+    "id": "Miền Trung",
+    "value": "Miền Trung"
+  },
+  {
+    "id": "Miền Tây",
+    "value": "Miền Tây"
+  },
+  {
+    "id": "Miền Nam",
+    "value": "Miền Nam"
+  },
+  {
+    "id": "Khu Vực Nam Bộ",
+    "value": "Khu Vực Nam Bộ"
+  },
+  {
+    "id": "Khu Vực Nam Trung Bộ",
+    "value": "Khu Vực Nam Trung Bộ"
+  },
+  {
+    "id": "Khu Vực Đông Nam Bộ",
+    "value": "Khu Vực Đông Nam Bộ"
+  },
+  {
+    "id": "Khu Vực Bắc Bộ",
+    "value": "Khu Vực Bắc Bộ"
+  },
+  {
+    "id": "Khu Vực Bắc Trung Bộ",
+    "value": "Khu Vực Bắc Trung Bộ"
+  },
+  {
+    "id": "Khu Vực Đông Bắc",
+    "value": "Khu Vực Đông Bắc"
+  },
+  {
+    "id": "Khu Vực Tây Bắc",
+    "value": "Khu Vực Tây Bắc"
+  },
+  {
+    "id": "Khu Vực Duyên Hải Đông Bắc",
+    "value": "Khu Vực Duyên Hải Đông Bắc"
+  },
+  {
+    "id": "Khu Vực Tây Nguyên",
+    "value": "Khu Vực Tây Nguyên"
+  },
+  {
+    "id": "Khác",
+    "value": "Khác"
+  }
+]

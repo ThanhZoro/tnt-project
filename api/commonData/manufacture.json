@@ -1,0 +1,330 @@
+[
+  {
+    "id": "Acura",
+    "value": "Acura"
+  },
+  {
+    "id": "Alfa Romeo",
+    "value": "Alfa Romeo"
+  },
+  {
+    "id": "Asia",
+    "value": "Asia"
+  },
+  {
+    "id": "Aston Martin",
+    "value": "Aston Martin"
+  },
+  {
+    "id": "Audi",
+    "value": "Audi"
+  },
+  {
+    "id": "BAIC",
+    "value": "BAIC"
+  },
+  {
+    "id": "Bentley",
+    "value": "Bentley"
+  },
+  {
+    "id": "BMW",
+    "value": "BMW"
+  },
+  {
+    "id": "Buick",
+    "value": "Buick"
+  },
+  {
+    "id": "BYD",
+    "value": "BYD"
+  },
+  {
+    "id": "Cadillac",
+    "value": "Cadillac"
+  },
+  {
+    "id": "Changan",
+    "value": "Changan"
+  },
+  {
+    "id": "Chery",
+    "value": "Chery"
+  },
+  {
+    "id": "Chevrolet",
+    "value": "Chevrolet"
+  },
+  {
+    "id": "Chrysler",
+    "value": "Chrysler"
+  },
+  {
+    "id": "Chuyên dùng",
+    "value": "Chuyên dùng"
+  },
+  {
+    "id": "Citroen",
+    "value": "Citroen"
+  },
+  {
+    "id": "CMC",
+    "value": "CMC"
+  },
+  {
+    "id": "Cửu Long",
+    "value": "Cửu Long"
+  },
+  {
+    "id": "Daewoo",
+    "value": "Daewoo"
+  },
+  {
+    "id": "Daihatsu",
+    "value": "Daihatsu"
+  },
+  {
+    "id": "Dodge",
+    "value": "Dodge"
+  },
+  {
+    "id": "Dongben",
+    "value": "Dongben"
+  },
+  {
+    "id": "Dongfeng",
+    "value": "Dongfeng"
+  },
+  {
+    "id": "Eagle",
+    "value": "Eagle"
+  },
+  {
+    "id": "Fairy",
+    "value": "Fairy"
+  },
+  {
+    "id": "FAW",
+    "value": "FAW"
+  },
+  {
+    "id": "Ferrari",
+    "value": "Ferrari"
+  },
+  {
+    "id": "Fiat",
+    "value": "Fiat"
+  },
+  {
+    "id": "Ford",
+    "value": "Ford"
+  },
+  {
+    "id": "Fuso",
+    "value": "Fuso"
+  },
+  {
+    "id": "Gaz",
+    "value": "Gaz"
+  },
+  {
+    "id": "Geely",
+    "value": "Geely"
+  },
+  {
+    "id": "Genesis",
+    "value": "Genesis"
+  },
+  {
+    "id": "Geo",
+    "value": "Geo"
+  },
+  {
+    "id": "GMC",
+    "value": "GMC"
+  },
+  {
+    "id": "Great wall",
+    "value": "Great wall"
+  },
+  {
+    "id": "Haima",
+    "value": "Haima"
+  },
+  {
+    "id": "Hãng khác",
+    "value": "Hãng khác"
+  },
+  {
+    "id": "Hino",
+    "value": "Hino"
+  },
+  {
+    "id": "Honda",
+    "value": "Honda"
+  },
+  {
+    "id": "Howo",
+    "value": "Howo"
+  },
+  {
+    "id": "Hummer",
+    "value": "Hummer"
+  },
+  {
+    "id": "Hyundai",
+    "value": "Hyundai"
+  },
+  {
+    "id": "Infiniti",
+    "value": "Infiniti"
+  },
+  {
+    "id": "Isuzu",
+    "value": "Isuzu"
+  },
+  {
+    "id": "JAC",
+    "value": "JAC"
+  },
+  {
+    "id": "Jaguar",
+    "value": "Jaguar"
+  },
+  {
+    "id": "Jeep",
+    "value": "Jeep"
+  },
+  {
+    "id": "Jonway",
+    "value": "Jonway"
+  },
+  {
+    "id": "JRD",
+    "value": "JRD"
+  },
+  {
+    "id": "Kamaz",
+    "value": "Kamaz"
+  },
+  {
+    "id": "Kia",
+    "value": "Kia"
+  },
+  {
+    "id": "Lada",
+    "value": "Lada"
+  },
+  {
+    "id": "Lamborghini",
+    "value": "Lamborghini"
+  },
+  {
+    "id": "Lancia",
+    "value": "Lancia"
+  },
+  {
+    "id": "LandRover",
+    "value": "LandRover"
+  },
+  {
+    "id": "Lexus",
+    "value": "Lexus"
+  },
+  {
+    "id": "Lifan",
+    "value": "Lifan"
+  },
+  {
+    "id": "Lincoln",
+    "value": "Lincoln"
+  },
+  {
+    "id": "Lotus",
+    "value": "Lotus"
+  },
+  {
+    "id": "Luxgen",
+    "value": "Luxgen"
+  },
+  {
+    "id": "Man",
+    "value": "Man"
+  },
+  {
+    "id": "Maserati",
+    "value": "Maserati"
+  },
+  {
+    "id": "Maybach",
+    "value": "Maybach"
+  },
+  {
+    "id": "Mazda",
+    "value": "Mazda"
+  },
+  {
+    "id": "McLaren",
+    "value": "McLaren"
+  },
+  {
+    "id": "Mekong",
+    "value": "Mekong"
+  },
+  {
+    "id": "Mercedes-Benz",
+    "value": "Mercedes-Benz"
+  },
+  {
+    "id": "Mercury",
+    "value": "Mercury"
+  },
+  {
+    "id": "MG",
+    "value": "MG"
+  },
+  {
+    "id": "Mini",
+    "value": "Mini"
+  },
+  {
+    "id": "Mitsubishi",
+    "value": "Mitsubishi"
+  },
+  {
+    "id": "Nissan",
+    "value": "Nissan"
+  },
+  {
+    "id": "Oldsmobile",
+    "value": "Oldsmobile"
+  },
+  {
+    "id": "Opel",
+    "value": "Opel"
+  },
+  {
+    "id": "Peugeot",
+    "value": "Peugeot"
+  },
+  {
+    "id": "Plymouth",
+    "value": "Plymouth"
+  },
+  {
+    "id": "PMC",
+    "value": "PMC"
+  },
+  {
+    "id": "Pontiac",
+    "value": "Pontiac"
+  },
+  {
+    "id": "Porsche",
+    "value": "Porsche"
+  },
+  {
+    "id": "Proton",
+    "value": "Proton"
+  }
+]

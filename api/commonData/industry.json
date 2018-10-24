@@ -1,0 +1,90 @@
+[
+  {
+    "id": "Car",
+    "value": "Car"
+  },
+  {
+    "id": "Realty",
+    "value": "Realty"
+  },
+  {
+    "id": "eCommerce",
+    "value": "eCommerce"
+  },
+  {
+    "id": "Construction",
+    "value": "Construction"
+  },
+  {
+    "id": "Insurrance",
+    "value": "Insurrance"
+  },
+  {
+    "id": "Education",
+    "value": "Education"
+  },
+  {
+    "id": "Medical, Health",
+    "value": "Medical, Health"
+  },
+  {
+    "id": "Gym, Yoga",
+    "value": "Gym, Yoga"
+  },
+  {
+    "id": "Taxi, Uber, Grab",
+    "value": "Taxi, Uber, Grab"
+  },
+  {
+    "id": "Beauty Salon, Spa, Massage",
+    "value": "Beauty Salon, Spa, Massage"
+  },
+  {
+    "id": "Financial corporation, investment",
+    "value": "Financial corporation, investment"
+  },
+  {
+    "id": "Tourism, Restaurants, Hotels",
+    "value": "Tourism, Restaurants, Hotels"
+  },
+  {
+    "id": "Furniture, Feng Shui",
+    "value": "Furniture, Feng Shui"
+  },
+  {
+    "id": "Production, Factories",
+    "value": "Production, Factories"
+  },
+  {
+    "id": "Newspapers, online news",
+    "value": "Newspapers, online news"
+  },
+  {
+    "id": "Software, Solutions",
+    "value": "Software, Solutions"
+  },
+  {
+    "id": "Digital Marketing",
+    "value": "Digital Marketing"
+  },
+  {
+    "id": "Wedding services, Studio",
+    "value": "Wedding services, Studio"
+  },
+  {
+    "id": "Job",
+    "value": "Job"
+  },
+  {
+    "id": "Nutrition, Food",
+    "value": "Nutrition, Food"
+  },
+  {
+    "id": "Oil",
+    "value": "Oil"
+  },
+  {
+    "id": "Other",
+    "value": "Other"
+  }
+]
