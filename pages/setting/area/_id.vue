@@ -37,9 +37,12 @@
                     <input type="text" :disabled="formData.dataKey" v-else name="areaId" :data-vv-as="$t('setting.areaId')" :placeholder="$t('setting.areaId')" class="form-control" v-model="formData.id">
                     <span v-show="errors.has('areaId')" class="help-block text-danger">{{$t('setting.errorCategory')}}</span>
                   </div>
-                  <div class="col-xs-8">
+                  <div class="col-xs-6">
                     <input type="text" name="areaName" :data-vv-as="$t('setting.areaName')" :placeholder="$t('setting.areaName')" v-validate="'required'" class="form-control" v-model="formData.name">
                     <span v-show="errors.has('areaName')" class="help-block text-danger">{{$t('setting.errorCategory')}}</span>
+                  </div>
+                  <div class="col-xs-2">
+                    <input type="number" name="weight" :data-vv-as="$t('setting.weight')" :placeholder="$t('setting.weight')" class="form-control" v-model="formData.weight">
                   </div>
                 </div>
               </fieldset>
@@ -47,6 +50,7 @@
                 <table class="table">
                   <thead>
                     <tr>
+                      <th>{{$t('setting.weight')}}</th>
                       <th>{{$t('setting.areaId')}}</th>
                       <th>{{$t('setting.areaName')}}</th>
                       <th></th>
@@ -54,6 +58,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="(item, i) in areaData.data" :key="i" :value="item">
+                      <td>{{item.weight}}</td>
                       <td>{{item.id}}</td>
                       <td>{{item.name}}</td>
                       <td>
@@ -94,14 +99,12 @@ import _ from 'lodash';
 import { mapActions, mapState, mapGetters } from 'vuex';
 import titleBar from '~/components/TitleBar.vue';
 import navBarSetting from '~/components/NavBarSetting.vue';
-import masterData from '~/components/MasterData.vue';
 import commonData from '~/utils/common-data';
 import firebase from 'firebase';
 export default {
 	components: {
 		titleBar,
-		navBarSetting,
-		masterData
+		navBarSetting
   },
   middleware: 'authenticated',
 	data() {
@@ -134,7 +137,8 @@ export default {
           area.data.push({
             id: key,
             dataKey: key,
-            name: obj[key].name
+            name: obj[key].name,
+            weight: obj[key].weight
           })
         }
         store.dispatch('setting/setArea', area);

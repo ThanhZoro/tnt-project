@@ -8,19 +8,9 @@ const state = {
   searchRequest: {
     description: '',
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 100,
     sort: { field: "createdAt", sortOrder: "desc" }
   },
-  headers: {
-    code: true,
-    name: true,
-    seats: true,
-    area: true,
-    status: true,
-    weight: false,
-    createdAt: false,
-    updatedAt: false,
-  }
 };
 
 export default {

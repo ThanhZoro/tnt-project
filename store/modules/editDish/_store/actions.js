@@ -8,7 +8,8 @@ const getListCategory = async (context, request) =>{
     for (let key in obj) {
       category.push({
         id: key,
-        name: obj[key].name
+        name: obj[key].name,
+        weight: obj[key].weight
       })
     }
   }).catch((err) => {

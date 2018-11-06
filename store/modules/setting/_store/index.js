@@ -9,13 +9,13 @@ const state = {
     description: '',
     currentPage: 1,
     pageSize: 10,
-    sort: { field: "id", sortOrder: "desc" },
+    sort: { field: "weight", sortOrder: "asc" },
   },
   searchArea: {
     description: '',
     currentPage: 1,
     pageSize: 10,
-    sort: { field: "id", sortOrder: "desc" },
+    sort: { field: "weight", sortOrder: "asc" },
   }
 };
 

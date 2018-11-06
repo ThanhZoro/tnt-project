@@ -37,9 +37,12 @@
                     <input type="text" :disabled="formData.dataKey" v-else name="categoryId" :data-vv-as="$t('setting.categoryId')" :placeholder="$t('setting.categoryId')" class="form-control" v-model="formData.id">
                     <span v-show="errors.has('categoryId')" class="help-block text-danger">{{$t('setting.errorCategory')}}</span>
                   </div>
-                  <div class="col-xs-8">
+                  <div class="col-xs-6">
                     <input type="text" name="categoryName" :data-vv-as="$t('setting.categoryName')" :placeholder="$t('setting.categoryName')" v-validate="'required'" class="form-control" v-model="formData.name">
                     <span v-show="errors.has('categoryName')" class="help-block text-danger">{{$t('setting.errorCategory')}}</span>
+                  </div>
+                  <div class="col-xs-2">
+                    <input type="number" name="weight" :data-vv-as="$t('setting.weight')" :placeholder="$t('setting.weight')" class="form-control" v-model="formData.weight">
                   </div>
                 </div>
               </fieldset>
@@ -47,6 +50,7 @@
                 <table class="table">
                   <thead>
                     <tr>
+                      <th>{{$t('setting.weight')}}</th>
                       <th>{{$t('setting.categoryId')}}</th>
                       <th>{{$t('setting.categoryName')}}</th>
                       <th></th>
@@ -54,6 +58,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="(item, i) in categoryData.data" :key="i" :value="item">
+                      <td>{{item.weight}}</td>
                       <td>{{item.id}}</td>
                       <td>{{item.name}}</td>
                       <td>
@@ -94,14 +99,12 @@ import _ from 'lodash';
 import { mapActions, mapState, mapGetters } from 'vuex';
 import titleBar from '~/components/TitleBar.vue';
 import navBarSetting from '~/components/NavBarSetting.vue';
-import masterData from '~/components/MasterData.vue';
 import commonData from '~/utils/common-data';
 import firebase from 'firebase';
 export default {
 	components: {
 		titleBar,
-		navBarSetting,
-		masterData
+		navBarSetting
   },
   middleware: 'authenticated',
 	data() {
@@ -134,7 +137,8 @@ export default {
           category.data.push({
             id: key,
             dataKey: key,
-            name: obj[key].name
+            name: obj[key].name,
+            weight: obj[key].weight
           })
         }
         store.dispatch('setting/setCategory', category);

@@ -20,13 +20,28 @@ const getTable = (state, getter, rootState) => {
               v.areaId.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1 ||
               v.status.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1));
     });
-    data = _.orderBy(data, [function (o) { return o[state.searchRequest.sort.field] || ''; }], [state.searchRequest.sort.sortOrder]);
+    data = _.orderBy(data, 'weight', 'asc');
     tableData.total = data.length;
     data = _.take(_.drop(data, (state.searchRequest.currentPage - 1) * state.searchRequest.pageSize), state.searchRequest.pageSize);
     tableData.data= data;
   }
   return tableData;
 };
+const getListArea = (state, getter, rootState) => {
+  var areaData = { data: [], total: 0 };
+  var data = [];
+  data = _.filter(state.area, (v) => {
+    v.locale = rootState.locale;
+    return v;
+  });
+  data = _.orderBy(data, [function (o) { return o[state.searchRequest.sort.field] || ''; }], [state.searchRequest.sort.sortOrder]);
+  areaData.total = data.length;
+  data = _.take(_.drop(data, (state.searchRequest.currentPage - 1) * state.searchRequest.pageSize), state.searchRequest.pageSize);
+  areaData.data= data;
+  return areaData;
+};
+
 export default {
-  getTable
+  getTable,
+  getListArea
 };

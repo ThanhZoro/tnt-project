@@ -8,7 +8,8 @@ const getListArea = async (context, request) =>{
     for (let key in obj) {
       category.push({
         id: key,
-        name: obj[key].name
+        name: obj[key].name,
+        weight: obj[key].weight,
       })
     }
   }).catch((err) => {
@@ -50,6 +51,8 @@ const editTable = async (context, request) => {
       seats: request.seats,
       status: request.status,
       areaId: request.areaId,
+      currentSO: '',
+      weight: request.weight ? request.weight : 69,
       isDelete: false,
       createdAt: request.createdAt ? request.createdAt : moment().toISOString(),
       updatedAt: moment().toISOString()
@@ -75,6 +78,8 @@ const createListTable = async (context, request) => {
         seats: request.seats,
         status: request.status,
         areaId: request.areaId,
+        currentSO: '',
+        weight: i,
         isDelete: false,
         createdAt: moment().toISOString(),
         updatedAt: moment().toISOString()

@@ -7,7 +7,8 @@ const setCategory = async (context,request) =>{
 
 const editCategory = async (context, request) => {
   var formData = {
-    name: request.name
+    name: request.name,
+    weight: request.weight ? request.weight : 69,
   }
   await firebase.database().ref('category').child(request.id).update(formData)
   .catch((err) => {
@@ -21,7 +22,8 @@ const setArea = async (context,request) =>{
 
 const editArea = async (context, request) => {
   var formData = {
-    name: request.name
+    name: request.name,
+    weight: request.weight ? request.weight : 69,
   }
   await firebase.database().ref('area').child(request.id).update(formData)
   .catch((err) => {

@@ -3,24 +3,17 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  tables: null,
-  area: null,
+  table: [],
+  currentSO: {},
+  currentSO4Dish: {},
+  listDish: {},
+  category: [],
   searchRequest: {
     description: '',
     currentPage: 1,
-    pageSize: 10,
-    sort: { field: "createdAt", sortOrder: "desc" }
+    pageSize: 100,
+    sort: { field: "weight", sortOrder: "asc" },
   },
-  headers: {
-    code: true,
-    name: true,
-    seats: true,
-    area: true,
-    status: true,
-    weight: false,
-    createdAt: false,
-    updatedAt: false,
-  }
 };
 
 export default {

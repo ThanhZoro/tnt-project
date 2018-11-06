@@ -16,6 +16,8 @@
                 <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'createdAt' && searchRequest.sort.sortOrder == 'asc' ) }" command='{"field": "createdAt","sortOrder":"asc"}'>{{$t('sort.createdAsc')}}</el-dropdown-item>
                 <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'updatedAt' && searchRequest.sort.sortOrder == 'desc' ) }" command='{"field": "updatedAt","sortOrder":"desc"}'>{{$t('sort.updatedDes')}}</el-dropdown-item>
                 <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'updatedAt' && searchRequest.sort.sortOrder == 'asc' ) }" command='{"field": "updatedAt","sortOrder":"asc"}'>{{$t('sort.updatedAsc')}}</el-dropdown-item>
+                <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'weight' && searchRequest.sort.sortOrder == 'desc' ) }" command='{"field": "weight","sortOrder":"desc"}'>{{$t('sort.weightDesc')}}</el-dropdown-item>
+                <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'weight' && searchRequest.sort.sortOrder == 'asc' ) }" command='{"field": "weight","sortOrder":"asc"}'>{{$t('sort.weightAsc')}}</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
             <el-dropdown @command="handleShowHide" trigger="click" class="mr-1">
@@ -111,6 +113,9 @@
                     <td v-show="headers['status']" style="min-width:120px;">
                       {{$t('table.' + item.status) ? $t('table.' + item.status) : $t('notAvailable')}}
                     </td>
+                    <td v-show="headers['weight']" style="min-width:120px;">
+                      {{item.weight || $t('notAvailable')}}
+                    </td>
                     <td v-show="headers['createdAt']" style="min-width:200px">
                       <span class="display-block text-lv-3"> {{item.fromNowCreate}}</span>
                     </td>
@@ -195,6 +200,7 @@ export default {
             seats: obj[key].seats ? obj[key].seats : 0,
             areaId: obj[key].areaId ? obj[key].areaId : '',
             status: obj[key].status ? obj[key].status : 'empty',
+            weight: obj[key].weight,
             isDelete: obj[key].isDelete,
             createdAt: obj[key].createdAt ? obj[key].createdAt : '',
             updatedAt: obj[key].updatedAt ? obj[key].updatedAt : ''

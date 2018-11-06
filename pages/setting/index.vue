@@ -13,13 +13,11 @@ import _ from 'lodash';
 import { mapActions, mapState, mapGetters } from 'vuex';
 import titleBar from '~/components/TitleBar.vue';
 import navBarSetting from '~/components/NavBarSetting.vue';
-import masterData from '~/components/MasterData.vue';
 import commonData from '~/utils/common-data';
 export default {
 	components: {
 		titleBar,
-		navBarSetting,
-		masterData
+		navBarSetting
   },
   middleware: 'authenticated',
 	data() {

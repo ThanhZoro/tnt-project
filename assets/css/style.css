@@ -200,6 +200,10 @@
   cursor: pointer;
 }
 
+.no-drop {
+  cursor: no-drop;
+}
+
 .borderRadiusCall {
   border-radius: 5px;
 }
@@ -387,9 +391,9 @@ table.table tbody tr td .changeOnLeads {
 }
 
 .el-tag {
-  background-color: #c8c8c8 !important;
-  color: #000 !important;
-  border-color: #c8c8c8 !important;
+  font-size: 20px;
+  padding: 7px;
+  height: auto !important;
   margin-right: 10px;
 }
 
@@ -630,3 +634,50 @@ table tbody td a {
 .el-select .el-tag--small {
   margin-right: 6px;
 }
+.table-in-list {
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.area-in-list{
+  border: 1px #4dc15c solid;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #e7ffe3;
+}
+.active-area {
+  border: 1px #3caeaf solid !important;
+  background-color: #d7ffed !important;
+}
+.dish-in-order {
+  height: 170px;
+  border-radius: 4px;
+  border: 1px #70886c solid;
+  margin: 20px;
+}
+.button-back {
+  height: 100%;
+  background-color: #eaeaea;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 12px;
+}
+.button-submit {
+  height: 100%;
+  background-color: #7ca0ff;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 12px;
+}
+

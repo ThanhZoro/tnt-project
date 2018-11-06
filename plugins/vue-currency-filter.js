@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueCurrencyFilter from 'vue-currency-filter'
 Vue.use(VueCurrencyFilter, {
-  symbol: '',
+  symbol: 'đ',
   thousandsSeparator: '.',
   fractionCount: 0,
   fractionSeparator: ',',
-  symbolPosition: 'front',
+  symbolPosition: 'back',
   symbolSpacing: true
 })

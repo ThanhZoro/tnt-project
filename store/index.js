@@ -8,6 +8,8 @@ import editDishModule from './modules/editDish/_store';
 import dishListModule from './modules/dishList/_store';
 import editTableModule from './modules/editTable/_store';
 import tableListModule from './modules/tableList/_store';
+import listTableOrderModule from './modules/listTableOrder/_store';
+import detailTableOrderModule from './modules/detailTableOrder/_store';
 
 import commonData from '../utils/common-data';
 import moment from 'moment';
@@ -31,6 +33,8 @@ const createStore = () => {
       dishList: dishListModule,
       editTable: editTableModule,
       tableList: tableListModule,
+      listTableOrder: listTableOrderModule,
+      detailTableOrder: detailTableOrderModule,
     },
     getters: {
       activeUser: (state, getters) => {

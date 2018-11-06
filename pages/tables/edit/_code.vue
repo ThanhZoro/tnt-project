@@ -61,6 +61,12 @@
                     </el-select>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-2">{{$t('table.weight')}}</label>
+                  <div class="col-lg-10">
+                    <input type="number" name="weight" :placeholder="$t('table.weight')" class="form-control" v-model="formData.weight">
+                  </div>
+                </div>
               </fieldset>
             </div>
           </div>
