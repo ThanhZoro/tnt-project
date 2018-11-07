@@ -3,17 +3,13 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  trigger: false,
-  table: [],
-  currentSO: {},
-  currentSO4Dish: {},
-  listDish: [],
-  category: [],
+  tables: null,
+  area: null,
   searchRequest: {
     description: '',
     currentPage: 1,
     pageSize: 100,
-    sort: { field: "weight", sortOrder: "asc" },
+    sort: { field: "createdAt", sortOrder: "desc" }
   },
 };
 

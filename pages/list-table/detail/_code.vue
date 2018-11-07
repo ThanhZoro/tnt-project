@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-3 col-xs-3" style="text-align: left; margin-top: 20px; padding: 0px 0px 0px 20px">
-        <div @click="redirectTo('/list-table')" class="button-back btn pointer">Trở về</div>
+        <div @click="backToListTable" class="button-back btn pointer">Trở về</div>
       </div>
       <div class="col-md-6 col-xs-6" style="text-align: center;">
         <h1 style="text-transform: uppercase; font-weight: bold">{{tableData.name}}</h1>
@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-6 col-md-offset-3 col-xs-12" style="text-align: center; margin-top: 20px" v-else-if="tableData.status == 'full'">
         <div class="row">
-          <div class="dish-in-order" v-for="(itemDish) in currentSOData.dishList" :key="itemDish.code">
+          <div class="dish-in-order" v-for="(itemDish) in currentSOData.dishList" :key="itemDish.code" v-show="itemDish.quantity > 0">
             <div class="col-md-4 col-xs-4" style="padding: 5px; height: 170px">
               <img class="img-responsive" v-if="itemDish.pictureUrl" :src="itemDish.pictureUrl" style="width:100% ;height:100%"/>
               <img src="~/assets/images/no-image.svg" v-else style="width:100% ;height:100%"/>
@@ -117,7 +117,6 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-      listDish: 'detailTableOrder/getListDish',
       tableData: 'detailTableOrder/getTable',
       currentSOData: 'detailTableOrder/getCurrentSO'
 		}),
@@ -126,7 +125,8 @@ export default {
 		})
   },
   async fetch({ route, store, req, redirect }) {
-    if (route.params.code) {
+    if (route.params.code && store.state.detailTableOrder.trigger == false) {
+      store.state.detailTableOrder.trigger = true;
       await firebase.database().ref('/tables/' + route.params.code).on('value', async function(data) {
         let table = {}
         table = data.val();
@@ -137,8 +137,6 @@ export default {
           store.dispatch('detailTableOrder/getCurrentSO', table.currentSO);
         }
       })
-    } else {
-      redirect('/list-table');
     }
   },
   created() {
@@ -176,6 +174,10 @@ export default {
     minusDish: async function(itemDish) {
       await this.$store.dispatch('detailTableOrder/minusDish', itemDish);
     },
+    backToListTable: function(){
+      this.$store.dispatch('detailTableOrder/clearDataDetail');
+      this.redirectTo('/list-table');
+    }
 	}
 };
 </script>

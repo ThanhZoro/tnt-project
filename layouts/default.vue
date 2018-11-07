@@ -41,6 +41,27 @@
         <!-- /page content -->
       </div>
     </div>
+    <div v-else-if="roleCurrentUser == 'nvpc'">
+       <div class="page-container" :style="`min-height:${windowHeight}px;`">
+        <!-- Page content -->
+        <div class="page-content">
+         <center class="container" v-if="$nuxt.$route.path == '/'">
+          <div style="border: 2px red solid;padding-bottom: 30px; margin-top: 50px; border-radius: 20px;" class="col-md-4 col-md-offset-4">
+            <h3>{{userInfo.fullName}}</h3>
+            <div>{{$t('userList.email')}}: {{userInfo.email}}</div>
+            <div>{{$t('userList.phone')}}: {{userInfo.phoneNumber}}</div>
+            <div>{{$t('userList.roleUser')}}: {{$t(userInfo.roleUser)}}</div>
+            <a  @click="logout" class="btn btn-danger" style="margin-top: 20px; margin-right: 20px">{{$t('signOut')}}</a>
+            <nuxt-link :to="`/list-new-order`" class="btn btn-primary" style="margin-top: 20px;">{{$t('work')}}</nuxt-link>
+          </div>
+        </center>
+          <!-- Main content -->
+          <nuxt />
+          <!-- /main content -->
+        </div>
+        <!-- /page content -->
+      </div>
+    </div>
   </div>
 </template>
 

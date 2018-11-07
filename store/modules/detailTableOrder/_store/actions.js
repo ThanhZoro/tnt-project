@@ -25,15 +25,6 @@ const createSO = async (context, request) => {
   })
 };
 
-const updateSO = async (context, request) => {
-  let formData = {
-    dishList: ['1', '2']
-  }
-  await firebase.database().ref('so').update(formData)
-  .catch((err) => {
-    console.log(err.message)
-  })
-};
 
 const getCurrentSO = async (context, request) => {
   await firebase.database().ref('so/' + request).once('value').then(data => {
@@ -48,11 +39,10 @@ const getCurrentSO = async (context, request) => {
 
 const getListDish = async (context, request) => {
   await firebase.database().ref('/dishes/').once('value').then(data => {
-    var dishData = {data: [], total: 0};
+    var dishData = [];
     const obj = data.val();
     for (let key in obj) {
-      dishData.total++;
-      dishData.data.push({
+      dishData.push({
         code: key,
         name: obj[key].name ? obj[key].name : '',
         price: obj[key].price ? obj[key].price : '',
@@ -86,7 +76,7 @@ const getListCategory = async (context, request) =>{
   }).catch((err) => {
     console.log(err);
   })
-  context.commit('SET_CATEGORY', category);
+  await context.commit('SET_CATEGORY', category);
 };
 
 const chooseNewDish = async (context, request) => {
@@ -104,24 +94,27 @@ const chooseNewDish = async (context, request) => {
 };
 
 const changeQuantityDish = async (context, request) => {
-  context.commit('UPDATE_CURRENT_SO_4_DISH', request);
+  await context.commit('UPDATE_CURRENT_SO_4_DISH', request);
 };
 const addNewDish = async (context, request) => {
-  context.commit('UP_CURRENT_SO_4_DISH', request);
+  await context.commit('UP_CURRENT_SO_4_DISH', request);
 };
 const minusDish = async (context, request) => {
-  context.commit('DOWN_CURRENT_SO_4_DISH', request);
+  await context.commit('DOWN_CURRENT_SO_4_DISH', request);
+};
+const clearDataDetail = async (context) => {
+  await context.commit('CLEAR_DATA_DETAIL');
 };
 
 export default {
   setTable,
   createSO,
-  updateSO,
   getCurrentSO,
   getListDish,
   chooseNewDish,
   getListCategory,
   changeQuantityDish,
   addNewDish,
-  minusDish
+  minusDish,
+  clearDataDetail,
 };

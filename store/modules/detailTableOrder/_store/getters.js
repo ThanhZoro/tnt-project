@@ -7,10 +7,10 @@ const getTable = (state, getter, rootState) => {
 };
 
 const getCurrentSO = (state, getter, rootState) => {
-  let data = state.currentSO;
+  let data = state.currentSO4Dish;
   let total = 0;
   data.dishList =  _.filter(data.dishList, (v) => {
-    let dishData = _.find(state.listDish.data, (o) => { return v.code == o.code });
+    let dishData = _.find(state.listDish, (o) => { return v.code == o.code });
     v.name = dishData.name;
     v.price = dishData.price;
     v.pictureUrl = dishData.pictureUrl;
@@ -40,7 +40,7 @@ const getCategory = (state, getter, rootState) => {
 const getListDish = (state, getter, rootState) => {
   var dishData = { data: [], total: 0 };
   var data = [];
-  data = _.filter(state.listDish.data, (v) => {
+  data = _.filter(state.listDish, (v) => {
     let dishSO = _.find(state.currentSO4Dish.dishList, (o) => { return v.code == o.code; })
     v.quantity = dishSO ? dishSO.quantity : 0;
     return (v.isDelete == false && v.status == 'active' &&
