@@ -4,8 +4,8 @@ import mutations from './mutations';
 
 const state = {
   trigger: false,
+  changeValue: false,
   table: [],
-  currentSO: {},
   currentSO4Dish: {},
   listDish: [],
   category: [],

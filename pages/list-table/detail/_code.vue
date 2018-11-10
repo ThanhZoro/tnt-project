@@ -18,7 +18,7 @@
       <div class="col-md-12 col-xs-12" style="text-align: center; margin-top: 20px" v-if="tableData.status == 'empty'">
         <button class="btn btn-primary" @click="receive">{{$t('table.receive')}}</button>
       </div>
-      <div class="col-md-6 col-md-offset-3 col-xs-12" style="text-align: center; margin-top: 20px" v-else-if="tableData.status == 'full'">
+      <div class="col-md-6 col-md-offset-3 col-xs-12" style="text-align: center; margin-top: 20px" v-else-if="tableData.status == 'full' || tableData.status == 'order'">
         <div class="row">
           <div class="dish-in-order" v-for="(itemDish) in currentSOData.dishList" :key="itemDish.code" v-show="itemDish.quantity > 0">
             <div class="col-md-4 col-xs-4" style="padding: 5px; height: 170px">
@@ -33,7 +33,9 @@
                 <span class="text-lv-2">{{$t('dish.price')}}: </span>{{itemDish.price | currency}} / {{itemDish.unit}}
               </div>
               <div style="font-size: 18px; font-weight: bold; margin-top: 10px;">
-                <span class="text-lv-2">{{$t('dish.quantity')}}: </span>{{itemDish.quantity}}
+                <span class="text-lv-2">{{$t('dish.quantity')}}: </span>
+                <span  v-if="itemDish.originalQuantity == itemDish.quantity">{{itemDish.quantity}}</span>
+                <span v-else>{{itemDish.originalQuantity}} -> <span style="color: red">{{itemDish.quantity}}</span></span>
               </div>
             </div>
             <div class="col-md-2 col-xs-2"  style="height: 100%; border-left: 1px #70886c dashed; padding: 0px">
@@ -48,12 +50,12 @@
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12">
-            <button :class="{'btn btn-success': !checkNewDish, 'btn btn-warning': checkNewDish}" :disabled="!checkNewDish">Gửi pha chế</button>
+            <button @click="sendDish" :class="{'btn btn-success': changeValue == false, 'btn btn-warning': changeValue == true}" :disabled="!changeValue || loadingBill || loadingSend"><i v-show="loadingSend" class="icon-spinner2 spinner position-left"></i>Gửi pha chế</button>
           </div>
         </div>
         <div class="row" style="margin: 0px 10px 0px 10px;">
           <legend class="text-bold" style="text-align: left; padding-bottom: 0px;"><span style="font-size: 18px; font-weight: bold; font-style: italic;">Thanh toán</span></legend>
-          <div class="col-md-12 col-xs-12" v-for="(item) in currentSOData.dishList" :key="'pay' + item.code">
+          <div class="col-md-12 col-xs-12" v-for="(item) in currentSOData.dishList" :key="'pay' + item.code" v-show="item.quantity!=0">
             <div class="row"  style="text-align: left; border-bottom: 1px #dedede dashed; margin: 0px 0px 15px 0px">
               <div class="col-md-12 col-xs-12">
                 <span style="font-size: 16px; color: #e24b00; font-weight: bold;">{{item.name}} </span>
@@ -71,22 +73,19 @@
               <span style="font-size: 16px; font-weight: bold;">Thành tiền: </span>
             </div>
             <div class="col-md-6 col-xs-6" style="text-align: right; margin-bottom: 10px;">
-              <span style="font-size: 16px; font-weight: bold;">{{currentSOData.total | currency}}</span>
+              <span style="font-size: 16px; font-weight: bold; color: blue">{{currentSOData.total | currency}}</span>
             </div>
           </div>
           <div class="col-md-12 col-xs-12" style="text-align: right;">
             <span class="text-lv-2" style="font-size: 16px; font-weight: bold;">{{currentSOData.stringTotal}}</span>
           </div>
           <div class="col-md-12 col-xs-12" style="margin-top: 20px; margin-bottom: 50px;">
-            <button class="btn btn-primary">Thanh toán</button>
+            <button @click="createBill" :disabled="loadingBill || loadingSend" class="btn btn-primary"><i v-show="loadingBill" class="icon-spinner2 spinner position-left"></i> Thanh toán</button>
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-xs-12" style="text-align: center; margin-top: 20px" v-else-if="tableData.status == 'order'">
-        order
-      </div>
       <div class="col-md-12 col-xs-12" style="text-align: center; margin-top: 20px" v-else>
-        notUse
+        <div style="font-size: 15px">Bàn này hiện tại không được sử dụng. Vui lòng chọn bàn khác.</div>
       </div>
     </div>
   </div>
@@ -104,6 +103,8 @@ export default {
 	middleware: 'authenticated',
 	data() {
 		return {
+      loadingSend: false,
+      loadingBill: false,
 			description: '',
       isCheckAll: false,
       checkNewDish: false,
@@ -118,15 +119,16 @@ export default {
 	computed: {
 		...mapGetters({
       tableData: 'detailTableOrder/getTable',
-      currentSOData: 'detailTableOrder/getCurrentSO'
+      currentSOData: 'detailTableOrder/getCurrentSO',
+      listDish: 'detailTableOrder/getListDish',
 		}),
 		...mapState({
-			searchRequest: state => state.detailTableOrder.searchRequest
+			searchRequest: state => state.detailTableOrder.searchRequest,
+			changeValue: state => state.detailTableOrder.changeValue
 		})
   },
   async fetch({ route, store, req, redirect }) {
     if (route.params.code && store.state.detailTableOrder.trigger == false) {
-      store.state.detailTableOrder.trigger = true;
       await firebase.database().ref('/tables/' + route.params.code).on('value', async function(data) {
         let table = {}
         table = data.val();
@@ -134,9 +136,10 @@ export default {
         await store.dispatch('detailTableOrder/setTable', table);
         if ((table.status == 'full' || table.status == 'order') && table.currentSO){
           await store.dispatch('detailTableOrder/getListDish');
-          store.dispatch('detailTableOrder/getCurrentSO', table.currentSO);
+          await store.dispatch('detailTableOrder/getCurrentSO', table.currentSO);
         }
       })
+      store.state.detailTableOrder.trigger = true;
     }
   },
   created() {
@@ -174,10 +177,51 @@ export default {
     minusDish: async function(itemDish) {
       await this.$store.dispatch('detailTableOrder/minusDish', itemDish);
     },
+    sendDish: _.debounce(async function() {
+      this.loadingSend = true;
+      try {
+        await this.$store.dispatch('detailTableOrder/sendDish');
+        this.$notify({
+          message: 'Đã gửi thành công',
+          type: 'success'
+        });
+      } catch (error) {
+        console.log(error);
+        this.$notify.error({
+          message: 'Gửi thất bại'
+        });
+      }
+      this.loadingSend = false;
+    }, 500),
     backToListTable: function(){
       this.$store.dispatch('detailTableOrder/clearDataDetail');
       this.redirectTo('/list-table');
-    }
+    },
+    createBill: _.debounce(async function() {
+			var _this = this;
+			await _this
+				.$confirm('Bạn có chắc chắn muốn tính tiền cho bàn này?', 'Tính tiền', {
+					confirmButtonText: _this.$t('confirm'),
+					cancelButtonText: _this.$t('cancel')
+				})
+				.then(async () => {
+					_this.loadingBill = true;
+					try {
+						 await this.$store.dispatch('detailTableOrder/createBill', this.currentSOData.tableCode);
+						_this.$notify({
+							message: 'Đã tạo hóa đơn thành công.',
+							type: 'success'
+						});
+					} catch (error) {
+						console.log(error);
+						_this.$notify.error({
+							message: 'Tạo hóa đơn thất bại'
+						});
+					}
+				})
+        .catch(() => {});
+        _this.loadingBill = false;
+		}, 500),
 	}
 };
 </script>

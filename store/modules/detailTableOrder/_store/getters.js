@@ -16,9 +16,10 @@ const getCurrentSO = (state, getter, rootState) => {
     v.pictureUrl = dishData.pictureUrl;
     v.unit = dishData.unit;
     total += v.price * v.quantity;
-    return v.quantity != 0;
+    return v;
   })
   data.total = total;
+  data.dishList = _.orderBy(data.dishList, 'name', 'desc');
   data.stringTotal = commonFunc.formatMoneyToString(total);
   return data;
 };
@@ -51,7 +52,7 @@ const getListDish = (state, getter, rootState) => {
   data = _.orderBy(data, 'name', 'desc');
   dishData.total = data.length;
   data = _.take(_.drop(data, (state.searchRequest.currentPage - 1) * state.searchRequest.pageSize), state.searchRequest.pageSize);
-  dishData.data= data;
+  dishData.data = data;
   return dishData;
 };
 

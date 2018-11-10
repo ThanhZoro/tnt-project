@@ -4,21 +4,25 @@ const SET_TABLE = (state, messages) => {
 };
 
 const SET_CURRENT_SO = (state, messages) => {
-  state.currentSO = messages;
-	if (!messages.dishList) {
-		messages.dishList = [];
-    let formData = {
-			code: state.listDish[0].code,
-			name: state.listDish[0].name,
-			price: state.listDish[0].price,
-			pictureUrl: state.listDish[0].pictureUrl,
-			quantity: 0,
-			unit: state.listDish[0].unit
-		};
-		messages.dishList.push(formData);
-	}
-	state.currentSO4Dish = messages;
+  if (!messages.dishList) {
+    messages.dishList = [];
+  }
+  state.currentSO4Dish = messages;
+  _.forEach(state.listDish, o => {
+    let existData = _.find(state.currentSO4Dish.dishList, v => { return v.code == o.code });
+    if (!existData) {
+      let formData = {
+        code: o.code,
+        quantity: 0
+      };
+      state.currentSO4Dish.dishList.push(formData);
+    }
+  });
+  _.forEach(state.currentSO4Dish.dishList, o => {
+    o.originalQuantity = o.quantity;
+  })
 };
+
 const SET_LIST_DISH = (state, messages) => {
 	state.listDish = messages;
 };
@@ -27,68 +31,41 @@ const SET_CATEGORY = (state, messages) => {
 };
 
 const UP_CURRENT_SO_4_DISH = (state, messages) => {
-	var data = _.find(state.currentSO4Dish.dishList, function(v) {
-		return v.code == messages.code;
-	});
-	if (data) {
-		_.forEach(state.currentSO4Dish.dishList, o => {
-			if (o.code == messages.code) {
-				o.quantity++;
-				return false;
-			}
-		});
-	} else {
-		let formData = {
-			code: messages.code,
-			name: messages.name,
-			price: messages.price,
-			pictureUrl: messages.pictureUrl,
-			quantity: ++messages.quantity,
-			unit: messages.unit
-		};
-		state.currentSO4Dish.dishList.push(formData);
-	}
+	_.forEach(state.currentSO4Dish.dishList, o => {
+    if (o.code == messages.code) {
+      ++o.quantity;
+      return;
+    }
+  });
 };
 const DOWN_CURRENT_SO_4_DISH = (state, messages) => {
-	var data = _.find(state.currentSO4Dish.dishList, function(v) {
-		return v.code == messages.code;
-	});
-	if (data) {
-		_.forEach(state.currentSO4Dish.dishList, o => {
-			if (o.code == messages.code) {
-				o.quantity == 0 ? 0 : o.quantity--;
-				return false;
-			}
-		});
-	}
+	_.forEach(state.currentSO4Dish.dishList, o => {
+    if (o.code == messages.code) {
+      o.quantity == o.originalQuantity ? o.originalQuantity : --o.quantity;
+      return;
+    }
+  });
 };
 const UPDATE_CURRENT_SO_4_DISH = (state, messages) => {
-	var data = _.find(state.currentSO4Dish.dishList, function(v) {
-		return v.code == messages.code;
-	});
-	if (data) {
-		_.forEach(state.currentSO4Dish.dishList, o => {
-			if (o.code == messages.code) {
-				o.quantity = messages.quantity;
-				return false;
-			}
-		});
-	} else {
-    let formData = {
-			code: messages.code,
-			name: messages.name,
-			price: messages.price,
-			pictureUrl: messages.pictureUrl,
-			quantity: messages.quantity,
-			unit: messages.unit
-		};
-		state.currentSO4Dish.dishList.push(formData);
-	}
+	_.forEach(state.currentSO4Dish.dishList, o => {
+    if (o.code == messages.code) {
+      o.quantity = (messages.quantity <= o.originalQuantity) ? o.originalQuantity : messages.quantity;
+      return;
+    }
+  });
+};
+const CHECK_CHANGE_VALUE = (state, messages) => {
+  let exist = _.find(state.currentSO4Dish.dishList, o => { return o.quantity > o.originalQuantity});
+  if (exist) {
+    state.changeValue = true;
+  } else {
+    state.changeValue = false;
+  }
 };
 const CLEAR_DATA_DETAIL = state => {
   state.trigger = false;
+  state.changeValue = false;
   state.currentSO4Dish = {};
-  state.currentSO = {};
 };
 
 export default {
@@ -99,5 +76,6 @@ export default {
 	UP_CURRENT_SO_4_DISH,
 	DOWN_CURRENT_SO_4_DISH,
 	UPDATE_CURRENT_SO_4_DISH,
-	CLEAR_DATA_DETAIL
+  CLEAR_DATA_DETAIL,
+  CHECK_CHANGE_VALUE
 };

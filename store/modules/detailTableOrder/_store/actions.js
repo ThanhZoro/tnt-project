@@ -2,7 +2,7 @@ import  firebase from '@/services/fireinit.js';
 import moment from 'moment';
 
 const setTable = async (context, table) =>{
-  context.commit('SET_TABLE', table ? table : []);
+  context.commit('SET_TABLE', table ? table : {});
 };
 
 const createSO = async (context, request) => {
@@ -11,7 +11,7 @@ const createSO = async (context, request) => {
     total: 0,
     isDelete: false,
     createdAt: request.createdAt ? request.createdAt : moment().toISOString(),
-    createdAt: context.rootState.auth.user.uid
+    createdBy: context.rootState.auth.user.uid
   }
   await firebase.database().ref('so').push(formData).then(data => {
     let updateStatusTable = {
@@ -23,8 +23,20 @@ const createSO = async (context, request) => {
   .catch((err) => {
     console.log(err.message)
   })
+  context.state.trigger = true;
 };
 
+const createBill = async (context, request) => {
+  let formData = {
+    status: 'empty',
+    currentSO: ''
+  }
+  await firebase.database().ref('tables').child(request).update(formData)
+  .catch((err) => {
+    console.log(err.message)
+  })
+  await context.commit('CLEAR_DATA_DETAIL');
+};
 
 const getCurrentSO = async (context, request) => {
   await firebase.database().ref('so/' + request).once('value').then(data => {
@@ -79,28 +91,54 @@ const getListCategory = async (context, request) =>{
   await context.commit('SET_CATEGORY', category);
 };
 
-const chooseNewDish = async (context, request) => {
-  let formData = [];
+const sendDish = async (context, request) => {
+  let formData = {
+    dishList: [],
+    total: context.state.currentSO4Dish.total,
+    updatedAt: moment().toISOString(),
+    updatedBy: context.rootState.auth.user.uid,
+  };
+
+  let formDataSONew = {
+    status: 'waitProcess',
+    tableCode: context.state.currentSO4Dish.tableCode,
+    createdAt: moment().toISOString(),
+    createdBy: context.rootState.auth.user.uid,
+  };
   _.forEach(context.state.currentSO4Dish.dishList, (o) => {
-    if (o.quantity != 0) {
-      formData.push({code: o.code, quantity: o.quantity });
+    if (o.quantity > 0) {
+      formData.dishList.push({ code: o.code, quantity: o.quantity });
+      if (o.quantity > o.originalQuantity) {
+        formDataSONew.nameDish = o.name;
+        formDataSONew.quantity = o.quantity - o.originalQuantity;
+        formDataSONew.pictureUrlDish = o.pictureUrl;
+        firebase.database().ref('soNew').push(formDataSONew)
+        .catch((err) => {
+          console.log(err.message)
+        })
+      }
     }
   })
-  await firebase.database().ref('so/' + context.state.table.currentSO + '/dishList').set(formData)
+  await firebase.database().ref('so/' + context.state.table.currentSO).update(formData)
   .catch((err) => {
     console.log(err.message)
   })
+
   await context.dispatch('getCurrentSO', context.state.table.currentSO);
+  await context.commit('CHECK_CHANGE_VALUE');
 };
 
 const changeQuantityDish = async (context, request) => {
   await context.commit('UPDATE_CURRENT_SO_4_DISH', request);
+  await context.commit('CHECK_CHANGE_VALUE');
 };
 const addNewDish = async (context, request) => {
   await context.commit('UP_CURRENT_SO_4_DISH', request);
+  await context.commit('CHECK_CHANGE_VALUE');
 };
 const minusDish = async (context, request) => {
   await context.commit('DOWN_CURRENT_SO_4_DISH', request);
+  await context.commit('CHECK_CHANGE_VALUE');
 };
 const clearDataDetail = async (context) => {
   await context.commit('CLEAR_DATA_DETAIL');
@@ -111,10 +149,11 @@ export default {
   createSO,
   getCurrentSO,
   getListDish,
-  chooseNewDish,
+  sendDish,
   getListCategory,
   changeQuantityDish,
   addNewDish,
   minusDish,
   clearDataDetail,
+  createBill
 };

@@ -7,11 +7,8 @@
           <i class="icon-search4"></i>
         </div>
       </div>
-      <div class="col-md-6 col-xs-6" style="text-align: left; padding: 0px 0px 0px 20px">
+      <div class="col-md-12 col-xs-12" style="text-align: left; padding: 0px 0px 0px 20px">
         <div :disabled="loading" @click="redirectTo('/list-table/detail/' + currentSO.tableCode)" class="button-back btn pointer">Trở về</div>
-      </div>
-      <div class="col-md-6 col-xs-6" style="text-align: right; padding: 0px 20px 0px 0px; margin-bottom: 10px;">
-        <div :disabled="loading || errors.items.length > 0" class="button-submit btn pointer" @click="chooseNewDish"><i v-show="loading" class="icon-spinner2 spinner position-left"></i> Đồng ý</div>
       </div>
       <div class="col-md-2 col-xs-5" style="padding: 20px;" @click="chooseAllDish">
         <div :class="`area-in-list pointer ${searchRequest.description == '' ? 'active-area' : ''}`">
@@ -87,7 +84,7 @@ export default {
 		}),
 		...mapState({
       searchRequest: state => state.detailTableOrder.searchRequest,
-      currentSO: state => state.detailTableOrder.currentSO
+      currentSO: state => state.detailTableOrder.currentSO4Dish
 		})
 	},
 	async fetch({ store, nuxtState, route, redirect }) {
@@ -131,12 +128,6 @@ export default {
     minusDish: async function(itemDish) {
       await this.$store.dispatch('detailTableOrder/minusDish', itemDish);
     },
-    chooseNewDish: _.debounce(async function() {
-      this.loading = true;
-      await this.$store.dispatch('detailTableOrder/chooseNewDish');
-      this.loading = false;
-      this.redirectTo('/list-table/detail/' + this.currentSO.tableCode)
-    }, 500),
     handleChangeQuantity: async function(itemDish) {
       await this.$store.dispatch('detailTableOrder/changeQuantityDish', itemDish);
     }
