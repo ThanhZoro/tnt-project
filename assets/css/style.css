@@ -680,4 +680,14 @@ table tbody td a {
   padding: 6px;
   border-radius: 12px;
 }
+.button-messages {
+  height: 100%;
+  background-color: #e0d566;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 12px;
+}
 

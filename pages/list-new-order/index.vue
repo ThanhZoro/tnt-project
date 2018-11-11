@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="col-md-2 col-xs-2" style="text-align: center;">
-            <i @click="cookDone(item)" class="icon-arrow-right15 pointer" style="font-size: 110px; top: 30px;"></i>
+            <i @click="cookDone(item)" :class="{'icon-arrow-right15 pointer': !loadingCheck, 'icon-spinner2 spinner': loadingCheck}" style="font-size: 110px; top: 30px;"></i>
           </div>
         </el-tag>
       </div>
@@ -40,6 +40,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import firebase from 'firebase';
 import titleBar from '~/components/TitleBar.vue';
+import { debug } from 'util';
 export default {
 	components: {
 		titleBar
@@ -47,6 +48,7 @@ export default {
 	middleware: 'authenticated',
 	data() {
 		return {
+      loadingCheck: false
 		};
 	},
 	watch: {
@@ -109,18 +111,16 @@ export default {
       this.description = '';
     },
     cookDone: _.debounce(async function(item) {
+      this.loadingCheck = true;
       try {
         await this.$store.dispatch('listNewOrder/cookDone', item);
-        this.$notify({
-          message: 'Đã gửi thành công',
-          type: 'success'
-        });
       } catch (error) {
         console.log(error);
         this.$notify.error({
           message: 'Gửi thất bại'
         });
       }
+      this.loadingCheck = false;
     }, 500),
 	}
 };

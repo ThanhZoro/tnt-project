@@ -27,6 +27,32 @@ const getTable = (state, getter, rootState) => {
   }
   return tableData;
 };
+
+const getSONews = (state, getter, rootState) => {
+  var soNewsData = { data: [], total: 0 };
+  var data = [];
+  if (state.soNews) {
+    data = _.filter(state.soNews, (v) => {
+      v.fromNowUpdate = v.updatedAt ? moment(v.updatedAt).fromNow() : '';
+      v.updatedAtTime = v.updatedAt ? moment(v.updatedAt).format('HH:mm') : '';
+      v.locale = rootState.locale;
+      if (state.tables) {
+        let table = _.find(state.tables, o => { return o.code == v.tableCode; });
+        v.tableName = table.name;
+        if (state.area) {
+          let areaObj = _.find(state.area, (o1) => { return table.areaId == o1.id });
+          v.areaName = areaObj.name;
+        }
+      }
+      return v.status == 'processed';
+    });
+    data = _.orderBy(data, 'updatedAt', 'asc');
+    soNewsData.total = data.length;
+    soNewsData.data= data;
+  }
+  return soNewsData;
+};
+
 const getListArea = (state, getter, rootState) => {
   var areaData = { data: [], total: 0 };
   var data = [];
@@ -43,5 +69,6 @@ const getListArea = (state, getter, rootState) => {
 
 export default {
   getTable,
+  getSONews,
   getListArea
 };

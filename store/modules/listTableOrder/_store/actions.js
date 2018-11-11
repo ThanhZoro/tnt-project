@@ -1,11 +1,12 @@
 import _ from 'lodash'
 import firebase from 'firebase'
+import moment from 'moment';
 
 const setTable = async (context, request) => {
   context.commit('SET_TABLE', { data: request ? request.data : null, total: request ? request.total : 0 });
 };
-const showHideCols = async (context, request) => {
-  context.commit('SHOW_HIDE_COLS', request);
+const setSONew = async (context, request) => {
+  context.commit('SET_SO_NEW', { data: request ? request.data : null, total: request ? request.total : 0 });
 };
 
 const getListArea = async (context, request) =>{
@@ -30,10 +31,23 @@ const deleteTables = async (context, request) =>{
     firebase.database().ref('tables').child(o).update({ isDelete: true });
   })
 }
+const serveDone = async (context, request) => {
+  let formData = {
+    status: 'done',
+    checkDoneAt: moment().toISOString(),
+    checkDoneBy: context.rootState.auth.user.uid,
+  }
+  await firebase.database().ref('soNew').child(request.code).update(formData)
+  .catch((err) => {
+    console.log(err.message)
+  })
+};
+
 
 export default {
-    showHideCols,
-    deleteTables,
-    setTable,
-    getListArea
+  setSONew,
+  deleteTables,
+  setTable,
+  getListArea,
+  serveDone
 };
