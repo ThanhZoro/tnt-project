@@ -4,6 +4,15 @@
     <div class="content">
       <navBarSetting />
       <div class="panel col-lg-9">
+        <div class="panel-heading customPanelHeading">
+          <h5 class="panel-title">{{$t("setting.general")}}</h5>
+          <p class="content-group-lg">{{$t("setting.generalDes")}}</p>
+        </div>
+        <div class="panel body panel-no-border">
+          <div class="panel-body">
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

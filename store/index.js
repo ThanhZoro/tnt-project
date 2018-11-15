@@ -11,6 +11,8 @@ import tableListModule from './modules/tableList/_store';
 import listTableOrderModule from './modules/listTableOrder/_store';
 import detailTableOrderModule from './modules/detailTableOrder/_store';
 import listNewOrderModule from './modules/listNewOrder/_store';
+import editListNotifyModule from './modules/editListNotify/_store';
+import listNotifyModule from './modules/listNotify/_store';
 
 import commonData from '../utils/common-data';
 import moment from 'moment';
@@ -37,6 +39,8 @@ const createStore = () => {
       listTableOrder: listTableOrderModule,
       detailTableOrder: detailTableOrderModule,
       listNewOrder: listNewOrderModule,
+      editListNotify: editListNotifyModule,
+      listNotify: listNotifyModule,
     },
     getters: {
       activeUser: (state, getters) => {

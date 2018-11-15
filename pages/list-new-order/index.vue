@@ -2,7 +2,9 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-6 col-xs-6" style="text-align: left; padding: 0px 0px 0px 20px;margin-bottom: 10px; margin-top: 20px">
-        <div @click="redirectTo('/')" class="button-back btn pointer">Trở về</div>
+        <el-badge class="item" :value="notifyData.total != 0 ? '+' + notifyData.total : null">
+          <div @click="redirectTo('/')" class="button-back btn pointer">Trở về</div>
+        </el-badge>
       </div>
       <div class="col-md-6 col-xs-6" style="text-align: right;  margin-top: 20px; padding: 0px 20px 0px 0px">
         <span style="font-size: 16px; font-weight: bold">Tổng cộng: {{listNewOrderData.total}} món</span>
@@ -55,7 +57,8 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-      listNewOrderData: 'listNewOrder/getListNewOrder'
+      listNewOrderData: 'listNewOrder/getListNewOrder',
+      notifyData: 'listTableOrder/getListNotify'
 		}),
 		...mapState({
 			searchRequest: state => state.listNewOrder.searchRequest

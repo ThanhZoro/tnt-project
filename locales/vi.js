@@ -53,17 +53,6 @@ export const langVi = {
     weightDesc: 'Thứ tự lớn nhất',
     weightAsc: 'Thứ tự nhỏ nhất'
   },
-  screen : {
-    team: 'Nhóm ',
-    setting: 'Cài đặt',
-    accessRight: 'Phân quyền người dùng',
-    configGetPosting: 'Cấu hình lấy tin rao',
-    preprocess: 'Tiền xử lý',
-    fetch: 'Cấu hình bộ lọc',
-    samePosting: 'Cấu hình tin bị trùng',
-    configGeneral: 'Cấu hình chung',
-    priority: 'Cấu hình độ ưu tiên'
-  },
   userList: {
     users : "Danh sách người dùng",
     password: 'Mật khẩu',
@@ -88,6 +77,7 @@ export const langVi = {
     saveUserWrong: "Tài khoản/Mật khẩu không hợp lệ"
   },
   dish: {
+    searchDes: 'Nhập mã món, tên món, mã nhóm món',
     title: 'Danh sách món',
     updateDish: 'Cập nhật món',
     createDish: 'Tạo mới món',
@@ -114,9 +104,13 @@ export const langVi = {
     general: 'Thông tin chung',
     detail: 'Cấu hình tạo bàn',
     prefixCode: 'Tiền tố mã bàn',
+    prefixCodeDes: 'vd: "b1" là mã, tiền tố sẽ là: "b"',
     prefixName: 'Tiền tố tên bàn',
+    prefixNameDes: 'vd: "Bàn 1" là tên bàn, tiền tố sẽ là "Bàn"',
     minTable: 'Hậu tố bắt đầu',
+    minTableDes: 'Số thứ tự bàn bắt đầu',
     maxTable: 'Hậu tố kết thúc',
+    maxTableDes: 'Số thứ tự bàn kết thúc',
     createListDes: 'Tạo danh sách bàn theo khu vực',
     delete: 'Xóa bàn',
     searchDes: 'Nhập mã bàn, tên bàn, mã khu vực',
@@ -142,6 +136,7 @@ export const langVi = {
   setting: {
     title: 'Cài đặt',
     general: 'Thiết lập chung',
+    generalDes: 'Thiết lập các cấu hình chung cho quán',
     category: 'Thiết lập nhóm món',
     categoryDes: 'Thiết lập các nhóm món để dễ dàng trong việc sử dụng, phân loại và liệt kê các món.',
     categoryId: 'Mã nhóm',
@@ -183,6 +178,24 @@ export const langVi = {
     gender: 'Giới tính',
     status : 'Trạng thái',
     statusUser : 'Trạng thái người dùng'
+  },
+  listNotify: {
+    title: 'Danh sách thông báo',
+    update: 'Cập nhật thông báo',
+    create: 'Tạo mới thông báo',
+    delete: 'Xóa thông báo',
+    sendTo: 'Gửi đến',
+    content: 'Nội dung',
+    status: 'Trạng thái',
+    startDate: 'Thời gian bắt đầu',
+    endDate: 'Thời gian kết thúc',
+    allUser: 'Tất cả nhân viên',
+    custom: 'Tùy chọn',
+    addUser: 'Thêm nhân viên',
+    titleSend: 'Tiêu đề',
+    notifyBefore: 'Thông báo trước',
+    address: 'Địa điểm',
+    searchDes: 'Nhập tiêu đề thông báo'
   },
   all: 'Tất cả',
   filter: 'Bộ lọc',

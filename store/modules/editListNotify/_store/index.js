@@ -3,15 +3,12 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  tables: null,
-  soNews: null,
-  listNotify: null,
-  area: null,
-  searchRequest: {
+  listUsers: [],
+  searchUser: {
     description: '',
     currentPage: 1,
-    pageSize: 100,
-    sort: { field: "createdAt", sortOrder: "desc" }
+    pageSize: 10,
+    sort: { field: "fullName", sortOrder: "asc" }
   },
 };
 

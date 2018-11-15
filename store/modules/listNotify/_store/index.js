@@ -3,16 +3,20 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  tables: null,
-  soNews: null,
   listNotify: null,
-  area: null,
+  total: 0,
   searchRequest: {
     description: '',
     currentPage: 1,
-    pageSize: 100,
+    pageSize: 10,
     sort: { field: "createdAt", sortOrder: "desc" }
   },
+  headers: {
+    titleSend: true,
+    startDate: true,
+    endDate: true,
+    status: true,
+  }
 };
 
 export default {

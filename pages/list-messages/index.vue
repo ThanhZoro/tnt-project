@@ -31,7 +31,7 @@
                 </template>
               </el-dropdown-menu>
             </el-dropdown>
-            <button class="btn btn-primary" @click="redirectTo('/users/edit')">
+            <button class="btn btn-primary" @click="redirectTo('/list-messages/create')">
               {{$t('createNew')}}
             </button>
           </div>
@@ -64,76 +64,42 @@
             </div>
           </form>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="table-cont" id="table-cont">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>
-                      <input type="checkbox" class="custorm-checkbox" v-model="isCheckAll" />
-                    </th>
-                    <template v-for="(item, props, index) in headers">
-                      <template v-if="props=='fullName'">
-                        <th :key="index" v-show="item">{{$t(`userList.${props}`)}}</th>
-                        <th :key="`${index}-m`"></th>
-                      </template>
-                      <template v-else>
-                        <th :key="index" v-show="item">{{$t(`userList.${props}`)}}</th>
-                      </template>
-                    </template>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(item, i) in userData.data" :key="i" :value="item">
-                    <td><input type="checkbox" class="custorm-checkbox" :value="item.id" v-model="ids" /></td>
-                    <td v-show="headers['fullName']" style="min-width:180px;">
-                      <nuxt-link :to="`/users/edit/${item.id}`">
-                        {{item.fullName ? item.fullName: $t('notAvailableFullName')}}
+        <!-- <div class="row">
+          <div class="col-md-12 col-xs-12" v-for="(item, i) in accessRightList.data" :key="i">
+                <div class="panel panel-body" style="margin: 0px; border: 0px; border-bottom: 1px solid #ddd; padding-left: 0px">
+                  <div class="col-md-12">
+                    <div class="col-md-9 col-xs-9" style="padding: 0px;">
+                      <nuxt-link :to="`/accessRight/edit/${item._id}`" style="font-size: 16px; font-weight: bold; padding: 0px !important;">
+                        {{item.group}}
                       </nuxt-link>
-                    </td>
-                    <td style="min-width:120px">
-                      <div :title="$t('editUsers.updateUser')" class="display-inline">
-                        <nuxt-link :to="`/users/edit/${item.id}`">
+                      <p class="mt-3">{{item.name}}</p>
+                      <span style="color:#7f7f7f"> {{(item.createdBy) ? item.createdBy + $t('createdBy') + $t('about') + item.fromNowCreate : $t('notAvailable')}}</span>
+                      <span style="color:#7f7f7f" v-if="item.updatedBy">/ {{$t('updatedBy')}} {{item.updatedBy + $t('about') + item.fromNowUpdate}}</span>
+                    </div>
+                    <div class="col-md-3 col-xs-9 text-right" style="padding: 0px;">
+                      <div class="display-inline icons-list" :title="$t('accessRight.edit')">
+                        <nuxt-link :to="`/accessRight/edit/${item._id}`">
                           <i class="icon-pencil7"></i>
                         </nuxt-link>
                       </div>
-                    </td>
-                    <td v-show="headers['email']" style="min-width:180px;">
-                      <div><a :href="`mailto:${item.email }`" target="_top">{{item.email || $t('notAvailableEmail')}}</a></div>
-                    </td>
-                    <td v-show="headers['phone']" style="min-width:180px;">
-                      {{item.phoneNumber ? item.phoneNumber: $t('notAvailablePhone')}}
-                    </td>
-                    <td v-show="headers['roleUser']" style="min-width:200px;">
-                      {{$t(item.roleUser)}}
-                    </td>
-                    <td v-show="headers['createdAt']" style="min-width:200px">
-                      <span class="display-block text-lv-3"> {{item.fromNowCreate}}</span>
-                    </td>
-                    <td v-show="headers['updatedAt']" style="min-width:200px">
-                      <span class="display-block break-word text-lv-3">{{item.fromNowUpdate}}</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <el-pagination class="ml-4"
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              background
-              :current-page.sync="searchRequest.currentPage"
-              :page-sizes="[10, 20, 50]"
-              :page-size="searchRequest.pageSize"
-              layout="sizes, prev, pager, next , jumper"
-              :total="userData.total">
-            </el-pagination>
-          </div>
+                      <div class="display-inline icons-list" style="margin-left:15px !important" :title="$t('accessRight.delete')">
+                        <a @click="deleteAccessRight(item)"><i class="icon-trash"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12" style="padding-right: 0px">
+                    <el-tag v-for="(tag,i) in item.roleList" :key="i" :disable-transitions="false" class="mt-10" v-show="i<6">
+                      <span v-if="i<5">{{tag}}</span>
+                      <span v-else-if="i == 5">+ {{item.roleList.length - i}}</span>
+                    </el-tag>
+                  </div>
+                </div>
+              </div>
           <div class="total-list">
             <div v-if="!userData.total">{{$t('noData')}}</div>
             <div v-else>{{$t('have')}} {{userData.total}} {{$t('row')}}</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -169,7 +135,7 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			userData: 'userList/getUsers'
+			//userData: 'userList/getUsers'
 		}),
 		...mapState({
 			headers: state => state.userList.headers,
@@ -181,24 +147,24 @@ export default {
 		if (!nuxtState || !nuxtState.state.roleCurrentUser || nuxtState.state.roleCurrentUser != 'admin') {
 		  redirect('/auth/signin');
 		} else {
-      await firebase.database().ref('/users/').on('value', function(data) {
-        var userData = {data: [], total: 0};
-        const obj = data.val();
-        for (let key in obj) {
-          userData.total++;
-          userData.data.push({
-            id: key,
-            fullName: obj[key].fullName ? obj[key].fullName : '',
-            phoneNumber: obj[key].phoneNumber ? obj[key].phoneNumber : '',
-            email: obj[key].email,
-            roleUser: obj[key].roleUser,
-            isDelete: obj[key].isDelete,
-            createdAt: obj[key].createdAt ? obj[key].createdAt : '',
-            updatedAt: obj[key].updatedAt ? obj[key].updatedAt : ''
-          })
-        }
-        store.dispatch('userList/setUsers', userData);
-      });
+      // await firebase.database().ref('/users/').on('value', function(data) {
+      //   var userData = {data: [], total: 0};
+      //   const obj = data.val();
+      //   for (let key in obj) {
+      //     userData.total++;
+      //     userData.data.push({
+      //       id: key,
+      //       fullName: obj[key].fullName ? obj[key].fullName : '',
+      //       phoneNumber: obj[key].phoneNumber ? obj[key].phoneNumber : '',
+      //       email: obj[key].email,
+      //       roleUser: obj[key].roleUser,
+      //       isDelete: obj[key].isDelete,
+      //       createdAt: obj[key].createdAt ? obj[key].createdAt : '',
+      //       updatedAt: obj[key].updatedAt ? obj[key].updatedAt : ''
+      //     })
+      //   }
+      //   store.dispatch('userList/setUsers', userData);
+      // });
     }
   },
   created() {

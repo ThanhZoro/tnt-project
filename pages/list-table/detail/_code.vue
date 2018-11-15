@@ -2,7 +2,9 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-3 col-xs-3" style="text-align: left; margin-top: 20px; padding: 0px 0px 0px 20px">
-        <div @click="backToListTable" class="button-back btn pointer">Trở về</div>
+        <el-badge class="item" :value="soNewsData.total != 0 ? soNewsData.total : null">
+          <div @click="backToListTable" class="button-back btn pointer">Trở về</div>
+        </el-badge>
       </div>
       <div class="col-md-6 col-xs-6" style="text-align: center;">
         <h1 style="text-transform: uppercase; font-weight: bold">{{tableData.name}}</h1>
@@ -121,6 +123,7 @@ export default {
       tableData: 'detailTableOrder/getTable',
       currentSOData: 'detailTableOrder/getCurrentSO',
       listDish: 'detailTableOrder/getListDish',
+      soNewsData: 'listTableOrder/getSONews',
 		}),
 		...mapState({
 			searchRequest: state => state.detailTableOrder.searchRequest,
@@ -183,12 +186,14 @@ export default {
         await this.$store.dispatch('detailTableOrder/sendDish');
         this.$notify({
           message: 'Đã gửi thành công',
-          type: 'success'
+          type: 'success',
+          position: 'bottom-left'
         });
       } catch (error) {
         console.log(error);
         this.$notify.error({
-          message: 'Gửi thất bại'
+          message: 'Gửi thất bại',
+          position: 'bottom-left'
         });
       }
       this.loadingSend = false;
@@ -210,12 +215,14 @@ export default {
 						 await this.$store.dispatch('detailTableOrder/createBill', this.currentSOData.tableCode);
 						_this.$notify({
 							message: 'Đã tạo hóa đơn thành công.',
-							type: 'success'
+              type: 'success',
+              position: 'bottom-left'
 						});
 					} catch (error) {
 						console.log(error);
 						_this.$notify.error({
-							message: 'Tạo hóa đơn thất bại'
+              message: 'Tạo hóa đơn thất bại',
+              position: 'bottom-left'
 						});
 					}
 				})

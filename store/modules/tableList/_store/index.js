@@ -9,7 +9,7 @@ const state = {
     description: '',
     currentPage: 1,
     pageSize: 10,
-    sort: { field: "createdAt", sortOrder: "desc" }
+    sort: { field: "weight", sortOrder: "asc" }
   },
   headers: {
     code: true,

@@ -28,6 +28,32 @@ const getTable = (state, getter, rootState) => {
   return tableData;
 };
 
+const getListNotify = (state, getter, rootState) => {
+  var notifyData = { data: [], total: 0 };
+  var data = [];
+  if (state.listNotify) {
+    data = _.filter(state.listNotify, (v) => {
+      v.startDateTime = v.startDate ? moment(v.startDate).format('HH:mm - DD/MM/YYYY') : '';
+      v.endDateTime = v.endDate ? moment(v.endDate).format('HH:mm - DD/MM/YYYY') : '';
+      if (moment().isSame(v.createdAt, 'day')) {
+        notifyData.total++;
+      }
+      let currentAdd = moment().add(v.notifyBefore, 'days').endOf('day').toISOString();
+      let checkStartDate =  moment(currentAdd).isAfter(v.startDate);
+      v.locale = rootState.locale;
+      if (!v.forAllUser) {
+        let exits = _.find(v.sendTo, o => { return o == rootState.auth.user.uid })
+        return exits ? !v.isDelete && v.status == 'active' && checkStartDate && moment().isBefore(v.endDate) : null;
+      }
+      return !v.isDelete && v.status == 'active' && checkStartDate && moment().isBefore(v.endDate);
+    });
+    data = _.orderBy(data, 'updatedAt', 'desc');
+    data = _.take(_.drop(data, (state.searchRequest.currentPage - 1) * state.searchRequest.pageSize), state.searchRequest.pageSize);
+    notifyData.data= data;
+  }
+  return notifyData;
+};
+
 const getSONews = (state, getter, rootState) => {
   var soNewsData = { data: [], total: 0 };
   var data = [];
@@ -70,5 +96,6 @@ const getListArea = (state, getter, rootState) => {
 export default {
   getTable,
   getSONews,
+  getListNotify,
   getListArea
 };

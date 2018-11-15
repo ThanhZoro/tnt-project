@@ -45,7 +45,8 @@
                                filterable remote
                                :placeholder="$t('choose')"
                                style="width:100%">
-                      <el-option v-for="item in commonData.tableStatus" :key="item" :label="$t('table.' + item)" :value="item">
+                      <el-option v-for="item in commonData.tableStatus" :label="$t('table.' + item.value)" :key="item.value" :value="item.value">
+                        <i class="icon-primitive-dot" v-bind:style="{ color: item.color}"></i> {{$t('table.' + item.value)}}
                       </el-option>
                     </el-select>
                   </div>
@@ -55,26 +56,26 @@
                 <div :class="`form-group ${errors.has('prefixCode') ? 'has-error' : ''}`">
                   <label class="control-label col-lg-2">{{$t('table.prefixCode')}} *</label>
                   <div class="col-lg-10">
-                    <input type="text" name="prefixCode" :placeholder="$t('table.prefixCode')" v-validate="{ required: true, regex: /^[a-zA-Z0-9\-\_]+$/ }" class="form-control" v-model="formData.prefixCode">
+                    <input type="text" name="prefixCode" :placeholder="$t('table.prefixCodeDes')" v-validate="{ required: true, regex: /^[a-zA-Z0-9\-\_]+$/ }" class="form-control" v-model="formData.prefixCode">
                   </div>
                 </div>
                 <div :class="`form-group ${errors.has('minTable') ? 'has-error' : ''}`">
                   <label class="control-label col-lg-2">{{$t('table.minTable')}} *</label>
                   <div class="col-lg-10">
-                    <input type="number" name="minTable" :placeholder="$t('table.minTable')" v-validate="'required'" class="form-control" v-model="formData.minTable">
+                    <input type="number" name="minTable" :placeholder="$t('table.minTableDes')" v-validate="'required'" class="form-control" v-model="formData.minTable">
                   </div>
                 </div>
 
                 <div :class="`form-group ${errors.has('prefixName') ? 'has-error' : ''}`">
                   <label class="control-label col-lg-2">{{$t('table.prefixName')}} *</label>
                   <div class="col-lg-10">
-                    <input type="text" name="prefixName" :placeholder="$t('table.prefixName')" v-validate="'required'" class="form-control" v-model="formData.prefixName">
+                    <input type="text" name="prefixName" :placeholder="$t('table.prefixNameDes')" v-validate="'required'" class="form-control" v-model="formData.prefixName">
                   </div>
                 </div>
                 <div :class="`form-group ${errors.has('maxTable') ? 'has-error' : ''}`">
                   <label class="control-label col-lg-2">{{$t('table.maxTable')}} *</label>
                   <div class="col-lg-10">
-                    <input type="number" name="maxTable" :placeholder="$t('table.maxTable')" v-validate="'required'" class="form-control" v-model="formData.maxTable">
+                    <input type="number" name="maxTable" :placeholder="$t('table.maxTableDes')" v-validate="'required'" class="form-control" v-model="formData.maxTable">
                   </div>
                 </div>
               </fieldset>

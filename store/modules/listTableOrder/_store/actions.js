@@ -9,6 +9,10 @@ const setSONew = async (context, request) => {
   context.commit('SET_SO_NEW', { data: request ? request.data : null, total: request ? request.total : 0 });
 };
 
+const setListNotify = async (context, request) => {
+  context.commit('SET_LIST_NOTIFY', { data: request ? request.data : null, total: request ? request.total : 0 });
+};
+
 const getListArea = async (context, request) =>{
   var area = [];
   await firebase.database().ref('/area/').once('value').then((data) => {
@@ -46,6 +50,7 @@ const serveDone = async (context, request) => {
 
 export default {
   setSONew,
+  setListNotify,
   deleteTables,
   setTable,
   getListArea,

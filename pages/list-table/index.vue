@@ -8,10 +8,12 @@
         </div>
       </div>
       <div class="col-md-6 col-xs-6" style="text-align: left; padding: 0px 0px 0px 20px;margin-bottom: 10px">
-        <div @click="redirectTo('/')" class="button-back btn pointer">Trở về</div>
+        <el-badge class="item" :value="notifyData.total != 0 ? '+' + notifyData.total : null">
+          <div @click="redirectTo('/')" class="button-back btn pointer">Trở về</div>
+        </el-badge>
       </div>
       <div class="col-md-6 col-xs-6" style="text-align: right; padding: 0px 20px 0px 0px; margin-bottom: 10px">
-        <el-badge class="item" :value="soNewsData.total">
+        <el-badge class="item" :value="soNewsData.total != 0 ? soNewsData.total : null">
           <div @click="handleShowMessages" class="button-messages btn pointer">Thông báo</div>
         </el-badge>
       </div>
@@ -97,7 +99,8 @@ export default {
 		...mapGetters({
       tableData: 'listTableOrder/getTable',
       areaData: 'listTableOrder/getListArea',
-      soNewsData: 'listTableOrder/getSONews'
+      soNewsData: 'listTableOrder/getSONews',
+      notifyData: 'listTableOrder/getListNotify'
 		}),
 		...mapState({
 			searchRequest: state => state.listTableOrder.searchRequest

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <titleBar :langTitle="$t('table.title')" />
+    <titleBar :langTitle="$t('listNotify.title')" />
     <div class="content">
       <div class="panel panel-flat">
         <div class="panel-heading">
-          <h5 class="panel-title">{{$t('table.title')}}</h5>
+          <h5 class="panel-title">{{$t('listNotify.title')}}</h5>
           <div class="heading-elements">
             <el-dropdown @command="handleSort" trigger="click" class="mr-1">
               <el-button size="medium" class="btn fontDefault">
@@ -16,8 +16,6 @@
                 <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'createdAt' && searchRequest.sort.sortOrder == 'asc' ) }" command='{"field": "createdAt","sortOrder":"asc"}'>{{$t('sort.createdAsc')}}</el-dropdown-item>
                 <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'updatedAt' && searchRequest.sort.sortOrder == 'desc' ) }" command='{"field": "updatedAt","sortOrder":"desc"}'>{{$t('sort.updatedDes')}}</el-dropdown-item>
                 <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'updatedAt' && searchRequest.sort.sortOrder == 'asc' ) }" command='{"field": "updatedAt","sortOrder":"asc"}'>{{$t('sort.updatedAsc')}}</el-dropdown-item>
-                <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'weight' && searchRequest.sort.sortOrder == 'desc' ) }" command='{"field": "weight","sortOrder":"desc"}'>{{$t('sort.weightDesc')}}</el-dropdown-item>
-                <el-dropdown-item v-bind:class="{ dropdownSelect: (searchRequest.sort.field == 'weight' && searchRequest.sort.sortOrder == 'asc' ) }" command='{"field": "weight","sortOrder":"asc"}'>{{$t('sort.weightAsc')}}</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
             <el-dropdown @command="handleShowHide" trigger="click" class="mr-1">
@@ -27,13 +25,13 @@
               </el-button>
               <el-dropdown-menu slot="dropdown">
                 <template v-for="(item, props, index) in headers" style="width:180px">
-                  <el-dropdown-item :key="index" :command="{props: props, item: item}">{{$t('table'+'.'+props) }}
+                  <el-dropdown-item :key="index" :command="{props: props, item: item}">{{$t('listNotify'+'.'+props) }}
                     <i v-show="item" class="el-icon-check mt-10 ml-20" style="float:right;"></i>
                   </el-dropdown-item>
                 </template>
               </el-dropdown-menu>
             </el-dropdown>
-            <button class="btn btn-primary" @click="redirectTo('/tables/edit')">
+            <button class="btn btn-primary" @click="redirectTo(`/list-notify/create`)">
               {{$t('createNew')}}
             </button>
           </div>
@@ -43,7 +41,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group has-feedback">
-                  <input class="form-control" v-model="description" v-on:keyup.enter="search()" :placeholder="$t('table.searchDes')">
+                  <input class="form-control" v-model="description" v-on:keyup.enter="search()" :placeholder="$t('listNotify.searchDes')">
                   <div class="form-control-feedback">
                     <i class="icon-search4"></i>
                   </div>
@@ -58,7 +56,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group text-right">
-                  <button type="button" v-if="ids.length" size="medium" class="btn bg-slate-400 mr-5" @click="deleteTable(ids)">
+                  <button type="button" v-if="ids.length" size="medium" class="btn bg-slate-400 mr-5" @click="deleteNotify(ids)">
                     {{$t('delete')}}
                   </button>
                 </div>
@@ -76,52 +74,39 @@
                       <input type="checkbox" class="custorm-checkbox" v-model="isCheckAll" />
                     </th>
                     <template v-for="(item, props, index) in headers">
-                      <template v-if="props=='name'">
-                        <th :key="index" v-show="item">{{$t(`table.${props}`)}}</th>
+                      <template v-if="props=='titleSend'">
+                        <th :key="index" v-show="item">{{$t(`listNotify.${props}`)}}</th>
                         <th :key="`${index}-m`"></th>
                       </template>
                       <template v-else>
-                        <th :key="index" v-show="item">{{$t(`table.${props}`)}}</th>
+                        <th :key="index" v-show="item">{{$t(`listNotify.${props}`)}}</th>
                       </template>
                     </template>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(item, i) in tableData.data" :key="i" :value="item">
-                    <td><input type="checkbox" class="custorm-checkbox" :value="item.code" v-model="ids" /></td>
-                    <td v-show="headers['code']" style="min-width:120px;">
-                      {{item.code ? item.code: $t('notAvailable')}}
-                    </td>
-                    <td v-show="headers['name']" style="min-width:180px;">
-                      <nuxt-link :to="`/tables/edit/${item.code}`">
-                        {{item.name ? item.name: $t('notAvailable')}}
+                  <tr v-for="(item, i) in notifyData.data" :key="i" :value="item">
+                    <td><input type="checkbox" class="custorm-checkbox" :value="item.id" v-model="ids" /></td>
+                    <td v-show="headers['titleSend']" style="min-width:180px;">
+                      <nuxt-link :to="`/list-notify/edit/${item.id}`">
+                        {{item.title ? item.title: $t('notAvailable')}}
                       </nuxt-link>
                     </td>
-                    <td style="min-width:100px">
-                      <div :title="$t('table.updateTable')" class="display-inline">
-                        <nuxt-link :to="`/tables/edit/${item.code}`">
+                    <td style="min-width:120px">
+                      <div :title="$t('listNotify.update')" class="display-inline">
+                        <nuxt-link :to="`/list-notify/edit/${item.id}`">
                           <i class="icon-pencil7"></i>
                         </nuxt-link>
                       </div>
                     </td>
-                    <td v-show="headers['seats']" style="min-width:120px;">
-                      {{item.seats ? item.seats : $t('notAvailable')}}
+                    <td v-show="headers['startDate']" style="min-width:180px;">
+                      {{item.startDateTime}}
                     </td>
-                    <td v-show="headers['area']" style="min-width:120px;">
-                      {{item.areaName ? item.areaName : $t('notAvailable')}}
+                    <td v-show="headers['endDate']" style="min-width:180px;">
+                      {{item.endDateTime}}
                     </td>
-                    <td v-show="headers['status']" style="min-width:120px;">
-                      <i class="icon-primitive-dot" v-show="item.status" v-bind:style="{ color: item.status == 'empty' ? '#2dd400' : (item.status == 'full' ? '#ff1d1d' : (item.status == 'order' ? '#ffa90b' : 'black'))}"></i>
-                       {{$t('table.' + item.status) ? $t('table.' + item.status) : $t('notAvailable')}}
-                    </td>
-                    <td v-show="headers['weight']" style="min-width:120px;">
-                      {{item.weight || $t('notAvailable')}}
-                    </td>
-                    <td v-show="headers['createdAt']" style="min-width:200px">
-                      <span class="display-block text-lv-3"> {{item.fromNowCreate}}</span>
-                    </td>
-                    <td v-show="headers['updatedAt']" style="min-width:200px">
-                      <span class="display-block break-word text-lv-3">{{item.fromNowUpdate}}</span>
+                    <td v-show="headers['status']" style="min-width:180px;">
+                      <i class="icon-primitive-dot" :style="{color: item.statusColor}"></i> {{$t(item.status)}}
                     </td>
                   </tr>
                 </tbody>
@@ -135,12 +120,12 @@
               :page-sizes="[10, 20, 50]"
               :page-size="searchRequest.pageSize"
               layout="sizes, prev, pager, next , jumper"
-              :total="tableData.total">
+              :total="notifyData.total">
             </el-pagination>
           </div>
           <div class="total-list">
-            <div v-if="!tableData.total">{{$t('noData')}}</div>
-            <div v-else>{{$t('have')}} {{tableData.total}} {{$t('row')}}</div>
+            <div v-if="!notifyData.total">{{$t('noData')}}</div>
+            <div v-else>{{$t('have')}} {{notifyData.total}} {{$t('row')}}</div>
           </div>
         </div>
       </div>
@@ -170,45 +155,51 @@ export default {
 		isCheckAll: function(val) {
 			var _this = this;
 			_this.ids = val
-				? _.map(_this.tableData.data, o => {
-						return o.code;
+				? _.map(_this.notifyData.data, o => {
+						return o.id;
 				  })
 				: [];
 		}
 	},
 	computed: {
 		...mapGetters({
-			tableData: 'tableList/getTable'
+			notifyData: 'listNotify/getListNotify'
 		}),
 		...mapState({
-			headers: state => state.tableList.headers,
-			searchRequest: state => state.tableList.searchRequest
+			headers: state => state.listNotify.headers,
+			searchRequest: state => state.listNotify.searchRequest
+			// users: state => state.listNotify.users
 		})
 	},
 	async fetch({ store, nuxtState, route, redirect }) {
 		if (!nuxtState || !nuxtState.state.roleCurrentUser || nuxtState.state.roleCurrentUser != 'admin') {
 		  redirect('/auth/signin');
 		} else {
-      await store.dispatch('tableList/getListArea');
-      await firebase.database().ref('/tables/').on('value', function(data) {
-        var tableData = {data: [], total: 0};
-        const obj = data.val();
-        for (let key in obj) {
-          tableData.total++;
-          tableData.data.push({
-            code: key,
-            name: obj[key].name ? obj[key].name : '',
-            seats: obj[key].seats ? obj[key].seats : 0,
-            areaId: obj[key].areaId ? obj[key].areaId : '',
-            status: obj[key].status ? obj[key].status : 'empty',
-            weight: obj[key].weight,
-            isDelete: obj[key].isDelete,
-            createdAt: obj[key].createdAt ? obj[key].createdAt : '',
-            updatedAt: obj[key].updatedAt ? obj[key].updatedAt : ''
-          })
-        }
-        store.dispatch('tableList/setTable', tableData);
-      });
+      await firebase.database().ref('/notify/').on('value', function(data) {
+      var notifyData = {data: [], total: 0};
+      const obj = data.val();
+      for (let key in obj) {
+        notifyData.total++;
+        notifyData.data.push({
+          id: key,
+          title: obj[key].title ? obj[key].title : '',
+          content: obj[key].content ? obj[key].content : '',
+          startDate: obj[key].startDate ? obj[key].startDate : '',
+          endDate: obj[key].endDate ? obj[key].endDate : '',
+          forAllUser: obj[key].forAllUser ? obj[key].forAllUser : '',
+          sendTo: obj[key].sendTo ? obj[key].sendTo : '',
+          notifyBefore: obj[key].notifyBefore,
+          address: obj[key].address,
+          status: obj[key].status,
+          isDelete: obj[key].isDelete,
+          createdAt: obj[key].createdAt ? obj[key].createdAt : '',
+          createdBy: obj[key].createdBy ? obj[key].createdBy : '',
+          updatedAt: obj[key].updatedAt ? obj[key].updatedAt : '',
+          updatedBy: obj[key].updatedBy ? obj[key].updatedBy : ''
+        })
+      }
+      store.dispatch('listNotify/setListNotify', notifyData);
+    });
     }
   },
   created() {
@@ -235,23 +226,23 @@ export default {
 		}, 500),
 		async handleShowHide(command) {
 			var _this = this;
-			await _this.$store.dispatch('tableList/showHideCols', command);
+			await _this.$store.dispatch('listNotify/showHideCols', command);
 		},
 		search: _.debounce(async function() {
 			var _this = this;
 			_this.searchRequest.description = _this.description;
 		}, 500),
-		deleteTable: _.debounce(async function() {
+		deleteNotify: _.debounce(async function() {
 			var _this = this;
 			await _this
-				.$confirm(_this.$t('ansDelete'), _this.$t('tableList.delete'), {
+				.$confirm(_this.$t('ansDelete'), _this.$t('listNotify.delete'), {
 					confirmButtonText: _this.$t('confirm'),
 					cancelButtonText: _this.$t('cancel')
 				})
 				.then(async () => {
 					_this.loading = true;
 					try {
-						var response = await _this.$store.dispatch(`tableList/deleteTables`, {
+						var response = await _this.$store.dispatch(`listNotify/deleteNotify`, {
 							ids: _this.ids
 						});
 						_this.$notify({

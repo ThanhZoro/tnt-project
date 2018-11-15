@@ -56,7 +56,8 @@
                                filterable remote
                                :placeholder="$t('choose')"
                                style="width:100%">
-                      <el-option v-for="item in commonData.tableStatus" :key="item" :label="$t('table.' + item)" :value="item">
+                      <el-option v-for="item in commonData.tableStatus" :label="$t('table.' + item.value)" :key="item.value" :value="item.value">
+                        <i class="icon-primitive-dot" v-bind:style="{ color: item.color}"></i> {{$t('table.' + item.value)}}
                       </el-option>
                     </el-select>
                   </div>

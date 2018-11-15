@@ -8,7 +8,7 @@ const state = {
   searchRequest: {
     description: '',
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 12,
     sort: { field: "createdAt", sortOrder: "desc" }
   }
 };

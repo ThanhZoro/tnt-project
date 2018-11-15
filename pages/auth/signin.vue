@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <section class="container" style="max-width: 300px !important" v-if="$store.state.loadingFinish">
+  <div class="container" >
+    <div style="max-width: 300px !important" v-if="$store.state.loadingFinish">
       <h2>
         Đăng nhập
       </h2>
@@ -13,9 +13,9 @@
         <input class="form-control" type="password" v-model="password">
       </div>
       <button type="submit" class="btn btn-info" :disabled="email == '' || password == ''" v-on:keyup.enter="submit()" @click="submit()" style="margin-bottom: 15px;">Đăng nhập</button>
-      <button type="button" class="btn btn-primary" @click="loginWithFaceBook" style="margin-bottom: 15px;">Đăng nhập với Facebook</button>
+      <!-- <button type="button" class="btn btn-primary" @click="loginWithFaceBook" style="margin-bottom: 15px;">Đăng nhập với Facebook</button> -->
       <button type="button" class="btn btn-danger" @click="loginWithGoogle">Đăng nhập với Google</button>
-    </section>
+    </div>
     <div class="loading-page" v-else><i class="el-icon-loading"></i> Đang tải...</div>
   </div>
 </template>

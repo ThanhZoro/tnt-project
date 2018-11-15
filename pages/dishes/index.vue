@@ -28,7 +28,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group has-feedback">
-                  <input class="form-control" v-model="description" v-on:keyup.enter="search()" :placeholder="$t('userList.searchDes')">
+                  <input class="form-control" v-model="description" v-on:keyup.enter="search()" :placeholder="$t('dish.searchDes')">
                   <div class="form-control-feedback">
                     <i class="icon-search4"></i>
                   </div>
@@ -94,7 +94,7 @@
               @current-change="handleCurrentChange"
               background
               :current-page.sync="searchRequest.currentPage"
-              :page-sizes="[5, 10, 20, 50]"
+              :page-sizes="[12, 24, 48]"
               :page-size="searchRequest.pageSize"
               layout="sizes, prev, pager, next , jumper"
               :total="dishData.total">

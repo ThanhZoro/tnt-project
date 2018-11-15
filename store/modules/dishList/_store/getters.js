@@ -10,8 +10,7 @@ const getDishes = (state, getter, rootState) => {
     return (!v.isDelete &&
             (v.code.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1 ||
             v.name.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1 ||
-            v.categoryId.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1 ||
-            v.price.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1));
+            v.categoryId.toLowerCase().indexOf(state.searchRequest.description.toLowerCase()) > -1));
   });
   data = _.orderBy(data, [function (o) { return o[state.searchRequest.sort.field] || ''; }], [state.searchRequest.sort.sortOrder]);
   dishData.total = data.length;
