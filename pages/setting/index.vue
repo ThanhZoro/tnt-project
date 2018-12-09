@@ -1,6 +1,6 @@
 <template>
   <div>
-    <titleBar :langTitle="$t('screen.setting')" />
+    <titleBar :langTitle="$t('setting.title')" />
     <div class="content">
       <navBarSetting />
       <div class="panel col-lg-9">

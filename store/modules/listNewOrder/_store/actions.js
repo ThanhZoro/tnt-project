@@ -11,7 +11,20 @@ const cookDone = async (context, request) => {
     updatedAt: moment().toISOString(),
     updatedBy: context.rootState.auth.user.uid,
   }
-  await firebase.database().ref('soNew').child(request.code).update(formData)
+  let formDataHistory = {
+    status: 'cooked',
+    type: 'nvpc',
+    data: {
+      tableCode: request.tableCode,
+      nameDish: request.nameDish,
+      quantity: request.quantity,
+    },
+    createdAt: moment().toISOString(),
+    createdBy: context.rootState.auth.user.uid,
+  }
+  await firebase.database().ref('soNew').child(request.code).update(formData).then(data => {
+    firebase.database().ref('history').push(formDataHistory)
+  })
   .catch((err) => {
     console.log(err.message)
   })

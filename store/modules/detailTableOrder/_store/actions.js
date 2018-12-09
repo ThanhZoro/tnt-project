@@ -13,13 +13,24 @@ const createSO = async (context, request) => {
     createdAt: request.createdAt ? request.createdAt : moment().toISOString(),
     createdBy: context.rootState.auth.user.uid
   }
+  let formDataHistory = {
+    status: 'receiveTable',
+    type: 'nvpv',
+    data: {
+      tableCode: request
+    },
+    createdAt: moment().toISOString(),
+    createdBy: context.rootState.auth.user.uid,
+  }
   await firebase.database().ref('so').push(formData).then(data => {
     let updateStatusTable = {
       status: 'full',
       currentSO: data.key
     }
     firebase.database().ref('tables').child(request).update(updateStatusTable)
-  })
+  }).then(
+    firebase.database().ref('history').push(formDataHistory)
+  )
   .catch((err) => {
     console.log(err.message)
   })
@@ -31,7 +42,19 @@ const createBill = async (context, request) => {
     status: 'empty',
     currentSO: ''
   }
+  let formDataHistory = {
+    status: 'createBill',
+    type: 'nvpv',
+    data: {
+      tableCode: request
+    },
+    createdAt: moment().toISOString(),
+    createdBy: context.rootState.auth.user.uid,
+  }
   await firebase.database().ref('tables').child(request).update(formData)
+  .then(
+    firebase.database().ref('history').push(formDataHistory)
+  )
   .catch((err) => {
     console.log(err.message)
   })
@@ -105,6 +128,16 @@ const sendDish = async (context, request) => {
     createdAt: moment().toISOString(),
     createdBy: context.rootState.auth.user.uid,
   };
+  let formDataHistory = {
+    status: 'sendDish',
+    type: 'nvpv',
+    data: {
+      quantityDish: 0,
+      tableCode: context.state.currentSO4Dish.tableCode,
+    },
+    createdAt: moment().toISOString(),
+    createdBy: context.rootState.auth.user.uid,
+  }
   _.forEach(context.state.currentSO4Dish.dishList, (o) => {
     if (o.quantity > 0) {
       formData.dishList.push({ code: o.code, quantity: o.quantity });
@@ -112,6 +145,7 @@ const sendDish = async (context, request) => {
         formDataSONew.nameDish = o.name;
         formDataSONew.quantity = o.quantity - o.originalQuantity;
         formDataSONew.pictureUrlDish = o.pictureUrl;
+        formDataHistory.data.quantityDish++;
         firebase.database().ref('soNew').push(formDataSONew)
         .catch((err) => {
           console.log(err.message)
@@ -119,7 +153,9 @@ const sendDish = async (context, request) => {
       }
     }
   })
-  await firebase.database().ref('so/' + context.state.table.currentSO).update(formData)
+  await firebase.database().ref('so/' + context.state.table.currentSO).update(formData).then(data => {
+    firebase.database().ref('history').push(formDataHistory)
+  })
   .catch((err) => {
     console.log(err.message)
   })

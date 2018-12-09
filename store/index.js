@@ -13,6 +13,7 @@ import detailTableOrderModule from './modules/detailTableOrder/_store';
 import listNewOrderModule from './modules/listNewOrder/_store';
 import editListNotifyModule from './modules/editListNotify/_store';
 import listNotifyModule from './modules/listNotify/_store';
+import history from './modules/history/_store';
 
 import commonData from '../utils/common-data';
 import moment from 'moment';
@@ -41,10 +42,14 @@ const createStore = () => {
       listNewOrder: listNewOrderModule,
       editListNotify: editListNotifyModule,
       listNotify: listNotifyModule,
+      history: history,
     },
     getters: {
       activeUser: (state, getters) => {
         return !!state.user
+      },
+      loadingFinish: (state, getters) => {
+        return state.loadingFinish
       }
     },
     mutations: {

@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <div style="max-width: 300px !important" v-if="$store.state.loadingFinish">
+    <div style="max-width: 300px !important" v-show="loadingFinish">
       <h2>
         Đăng nhập
       </h2>
@@ -16,12 +16,12 @@
       <!-- <button type="button" class="btn btn-primary" @click="loginWithFaceBook" style="margin-bottom: 15px;">Đăng nhập với Facebook</button> -->
       <button type="button" class="btn btn-danger" @click="loginWithGoogle">Đăng nhập với Google</button>
     </div>
-    <div class="loading-page" v-else><i class="el-icon-loading"></i> Đang tải...</div>
+    <div class="loading-page" v-show="!loadingFinish"><i class="el-icon-loading"></i> Đang tải...</div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import _ from 'lodash';
 import firebase from 'firebase';
 
@@ -30,20 +30,23 @@ export default {
 	data() {
 		return {
 			email: '',
-			password: ''
+      password: '',
+      loadingFinish: false
 		};
+  },
+  computed: {
 	},
 	async created() {
-		var _this = this;
+    var _this = this;
     var user = _this.$store.state.auth.user;
 		if (user) {
 			await _this.$store.dispatch('auth/login', user);
 			_this.$router.push('/');
 		} else {
 			if (!process.server) {
-				await _this.$store.dispatch('setLoadingFinish', true);
+				_this.loadingFinish = true;
 			} else {
-				await _this.$store.dispatch('setLoadingFinish', false);
+				_this.loadingFinish = false;
 			}
 		}
 	},

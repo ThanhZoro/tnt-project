@@ -41,7 +41,20 @@ const serveDone = async (context, request) => {
     checkDoneAt: moment().toISOString(),
     checkDoneBy: context.rootState.auth.user.uid,
   }
-  await firebase.database().ref('soNew').child(request.code).update(formData)
+  let formDataHistory = {
+    status: 'serveForCustomer',
+    type: 'nvpv',
+    data: {
+      tableCode: request.tableCode,
+      nameDish: request.nameDish,
+      quantity: request.quantity,
+    },
+    createdAt: moment().toISOString(),
+    createdBy: context.rootState.auth.user.uid,
+  }
+  await firebase.database().ref('soNew').child(request.code).update(formData).then(data => {
+    firebase.database().ref('history').push(formDataHistory)
+  })
   .catch((err) => {
     console.log(err.message)
   })

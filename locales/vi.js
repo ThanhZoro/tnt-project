@@ -208,5 +208,13 @@ export const langVi = {
   "auth/user-not-found": 'Email không tồn tại',
   "auth/wrong-password": 'Mật khẩu không chính xác',
   "auth/too-many-requests": 'Cảnh báo spam đăng nhập',
+  history: {
+    title: 'Lịch sử hoạt động',
+    cooked: 'Đã chế biến',
+    receiveTable: 'Nhận bàn mới',
+    createBill: 'Thanh toán',
+    serveForCustomer: 'Phục vụ món cho khách',
+    sendDish: 'Đặt {0} món mới'
+  },
   ...vi
 }

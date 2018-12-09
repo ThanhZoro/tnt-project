@@ -35,15 +35,19 @@ const getListNotify = (state, getter, rootState) => {
     data = _.filter(state.listNotify, (v) => {
       v.startDateTime = v.startDate ? moment(v.startDate).format('HH:mm - DD/MM/YYYY') : '';
       v.endDateTime = v.endDate ? moment(v.endDate).format('HH:mm - DD/MM/YYYY') : '';
-      if (moment().isSame(v.createdAt, 'day')) {
-        notifyData.total++;
-      }
-      let currentAdd = moment().add(v.notifyBefore, 'days').endOf('day').toISOString();
-      let checkStartDate =  moment(currentAdd).isAfter(v.startDate);
+      let startDateAdd = moment(v.startDate).subtract(v.notifyBefore, 'days').toISOString();
+      let checkStartDate =  moment().isAfter(startDateAdd);
       v.locale = rootState.locale;
       if (!v.forAllUser) {
-        let exits = _.find(v.sendTo, o => { return o == rootState.auth.user.uid })
+        let exits = _.find(v.sendTo, o => { return o == (rootState.auth.user ? rootState.auth.user.uid : '') })
+        if (moment().isSame(v.createdAt, 'day') && exits && !v.isDelete) {
+          notifyData.total++;
+        }
         return exits ? !v.isDelete && v.status == 'active' && checkStartDate && moment().isBefore(v.endDate) : null;
+      } else {
+        if (moment().isSame(v.createdAt, 'day') && !v.isDelete) {
+          notifyData.total++;
+        }
       }
       return !v.isDelete && v.status == 'active' && checkStartDate && moment().isBefore(v.endDate);
     });

@@ -1,14 +1,19 @@
 {
-  "name": "anctelebuy",
+  "name": "tnt-project",
   "version": "1.0.0",
-  "description": "ANC TeleBuy",
-  "author": "vuongnd@twin.vn",
+  "description": "TNT Project",
+  "author": "tnthanhzoro@gmail.com",
   "private": true,
+  "engines": {
+    "node": "8.11.3",
+	"npm": "6.0.0"
+  },
   "scripts": {
     "dev": "nuxt --port 3000",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",

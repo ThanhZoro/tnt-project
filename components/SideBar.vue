@@ -14,6 +14,7 @@
 								<nuxt-link tag="li" to="/dishes" active-class="active"><a><i class="icon-cup2"></i> <span>{{$t('dish.title')}}</span></a></nuxt-link>
 								<nuxt-link tag="li" to="/tables" active-class="active"><a><i class=" icon-chair"></i> <span>{{$t('table.title')}}</span></a></nuxt-link>
 								<nuxt-link tag="li" to="/list-notify" active-class="active"><a><i class=" icon-bubble-notification"></i> <span>{{$t('listNotify.title')}}</span></a></nuxt-link>
+								<nuxt-link tag="li" to="/history" active-class="active"><a><i class=" icon-history"></i> <span>{{$t('history.title')}}</span></a></nuxt-link>
 							</ul>
 						</div>
 					</div>

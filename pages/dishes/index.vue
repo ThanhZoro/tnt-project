@@ -57,8 +57,10 @@
               <div class="col-md-4 col-xs-12" v-for="(item, i) in dishData.data" :key="i">
                 <div class="panel panel-body" style="height: 180px; overflow-y: hidden" v-bind:class="{ 'border-left-danger': item.status == 'inactive', 'border-left-success' : item.status == 'active'}">
                    <div class="row">
-                    <div class="col-md-5 col-xs-5" style="padding: 0px; margin-top: 15px;">
-                      <img class="img-responsive pointer" v-if="item.pictureUrl" :src="item.pictureUrl" style="width:100%; height:100%" @click="handleShowImage(item)"/>
+                    <div class="col-md-5 col-xs-5" style="padding: 0px;">
+                      <!-- <img class="img-responsive pointer" v-if="item.pictureUrl" :src="item.pictureUrl" style="width:100%; height:100%" @click="handleShowImage(item)"/> -->
+                      <div v-bind:style='[{ backgroundImage: `url("${item.pictureUrl}")` }]' v-if="item.pictureUrl" @click="handleShowImage(item)"
+                           class="pointer" style="width: 100%; height: 140px; background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
                       <img src="~/assets/images/no-image.svg" v-else style="width:100% ;height:100%" />
                     </div>
                     <div class="col-md-7 col-xs-7">

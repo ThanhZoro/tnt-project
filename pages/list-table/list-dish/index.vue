@@ -30,15 +30,15 @@
             <img src="~/assets/images/no-image.svg" v-else style="width:100% ;height:100%"/>
           </div>
           <div class="col-md-6 col-xs-6" style="text-align: left">
-            <div style="font-size: 19px; color: #e24b00; font-weight: bold; margin-top: 10px;">
+            <div style="font-size: 19px; color: #e24b00; font-weight: bold; margin-top: 5px;">
               {{itemDish.name}}
             </div>
-            <div style="font-size: 18px; font-weight: bold; margin-top: 10px;">
+            <div style="font-size: 18px; font-weight: bold; margin-top: 5px;">
               <span class="text-lv-2">{{$t('dish.price')}}: </span>{{itemDish.price | currency}} / {{itemDish.unit}}
             </div>
-            <div :class="`${errors.has('quantity' + itemDish.code) ? 'has-error' : ''}`" style="font-size: 18px; font-weight: bold; margin-top: 10px;">
+            <div :class="`${errors.has('quantity' + itemDish.code) ? 'has-error' : ''}`" style="font-size: 18px; font-weight: bold; margin-top: 5px;">
               <span class="text-lv-2">{{$t('dish.quantity')}}: </span>
-              <input type="number" :name="'quantity' + itemDish.code" v-validate="'min_value:0'" class="form-control" style="width: 70px; display: inline;" @change="handleChangeQuantity(itemDish)" v-model="itemDish.quantity">
+              <input type="number" :name="'quantity' + itemDish.code" v-validate="'min_value:0'" class="form-control" style="width: 50px; display: inline;" @change="handleChangeQuantity(itemDish)" v-model="itemDish.quantity">
             </div>
           </div>
           <div class="col-md-2 col-xs-2" style="text-align: center; height: 100%; border-left: 1px #70886c dashed; padding: 0px">
